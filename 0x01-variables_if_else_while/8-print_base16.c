@@ -10,7 +10,7 @@ int main(void)
 	char ch = '0';
 	int count = 1;
 
-	while (count < 16)
+	while (count < 17)
 	{
 		if ((ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'f'))
 		{
