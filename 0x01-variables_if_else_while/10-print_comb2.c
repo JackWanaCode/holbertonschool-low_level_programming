@@ -8,17 +8,19 @@
 int main(void)
 {
 	int i, j;
+	int count = 1;
 
 	for (i = '0'; i <= '9'; i++)
 	{
-		for (j = i; j <= '9'; j++)
+		for (j = '0'; j <= '9'; j++)
 		{
 			putchar(i);
 			putchar(j);
-			if (i < '9')
+			if (count < 100)
 			{
 				putchar(',');
 				putchar(' ');
+				count++;
 			}
 		}
 	}
