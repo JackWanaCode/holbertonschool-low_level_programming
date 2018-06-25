@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "holberton.h"
 
 /**
  * main - Entry point
@@ -12,9 +12,9 @@ int main(void)
 
 	while (holberton[i] != '\0')
 	{
-		putchar(holberton[i]);
+		_putchar(holberton[i]);
 		i++;
 	}
-	putchar('\n');
+	_putchar('\n');
 	return (0);
 }
