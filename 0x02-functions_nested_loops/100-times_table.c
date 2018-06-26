@@ -7,13 +7,14 @@
  */
 void print_times_table(int n)
 {
-	int k, j;
+	int i = 0;
+	int j, k;
 
-	while (n > 0 && n < 15)
+	while (n > 0 && n < 15 && i <= n)
 	{
 		for (j = 0; j <= n; j++)
 		{
-			k = n * j;
+			k = i * j;
 			if (j == 0)
 			{
 				_putchar('0');
@@ -43,7 +44,7 @@ void print_times_table(int n)
 				_putchar((k % 10) + '0');
 			}
 		}
-		n++;
+		i++;
 		_putchar('\n');
 	}
 }
