@@ -23,7 +23,8 @@ int main(void)
 	for (j = 0; (5 * j) < n; j++)
 	{
 		temp = j * 5;
-		result_of_5 += temp;
+		if (temp % 3 != 0)
+			result_of_5 += temp;
 	}
 	printf("%i\n", result_of_3 + result_of_5);
 	return (0);
