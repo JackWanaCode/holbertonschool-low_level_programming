@@ -14,7 +14,7 @@ int main(void)
 	int count = 0;
 
 	putchar(second + '0');
-	while (count < 49)
+	while (count < 47)
 	{
 		printf(", %.0f", fibnum);
 		first = second;
