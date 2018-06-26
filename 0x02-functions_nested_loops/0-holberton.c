@@ -1,9 +1,8 @@
 #include "holberton.h"
-int _putchar(char c);
 
 /**
- * main - write a program that print Holberton on the screen
- * use function _putchar
+ * main - Entry point
+ * Description: Use function _putchar to print Holberton on the screen
  *
  * Return: Always 0 (Success)
  */
@@ -18,5 +17,6 @@ int main(void)
 		i++;
 	}
 	_putchar('\n');
+
 	return (0);
 }
