@@ -1,7 +1,7 @@
 #include "holberton.h"
 
 /**
- * _print_last_digit - check number and return absolute value
+ * print_last_digit - check number and return absolute value
  * @n: the number to be checked
  *
  * Return: return absolut number
