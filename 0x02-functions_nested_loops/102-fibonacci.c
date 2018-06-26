@@ -8,11 +8,11 @@
  */
 int main(void)
 {
-	int first = 0;
+	int first = 1;
 	int second = 1;
-	int fibnum = 1;
+	int fibnum = 2;
 
-	putchar(fibnum + '0');
+	putchar(second + '0');
 	while (fibnum < 50)
 	{
 		printf(", %i", fibnum);
