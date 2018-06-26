@@ -2,7 +2,8 @@
 int _putchar(char c);
 
 /**
- * main - Entry point
+ * main - write a program that print Holberton on the screen
+ * use function _putchar
  *
  * Return: Always 0 (Success)
  */
