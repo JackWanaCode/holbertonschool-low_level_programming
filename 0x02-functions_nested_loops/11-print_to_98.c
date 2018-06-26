@@ -1,5 +1,5 @@
-#include "holberton.h"
 #include <stdio.h>
+#include "holberton.h"
 
 /**
  * print_to_98 - print from n to 98 and separated by "' "
@@ -14,8 +14,8 @@ void print_to_98(int n)
 			printf("%i", n);
 			if (n < 98)
 			{
-				_putchar(',');
-				_putchar(' ');
+				putchar(',');
+				putchar(' ');
 			}
 			n++;
 		}
@@ -27,11 +27,11 @@ void print_to_98(int n)
 			printf("%i", n);
 			if (n > 98)
 			{
-				_putchar(',');
-				_putchar(' ');
+				putchar(',');
+				putchar(' ');
 			}
 			n--;
 		}
 	}
-	_putchar('\n');
+	putchar('\n');
 }
