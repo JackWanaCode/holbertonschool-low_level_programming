@@ -8,15 +8,15 @@
  */
 int main(void)
 {
-	float first = 1;
-	float second = 1;
-	float fibnum = 2;
+	long int first = 1;
+	long int second = 1;
+	long int fibnum = 2;
 	int count = 0;
 
 	putchar(second + '0');
-	while (count < 47)
+	while (count < 49)
 	{
-		printf(", %.0f", fibnum);
+		printf(", %li", fibnum);
 		first = second;
 		second = fibnum;
 		fibnum = first + second;
