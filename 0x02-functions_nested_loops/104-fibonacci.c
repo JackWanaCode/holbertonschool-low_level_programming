@@ -15,14 +15,14 @@ int main(void)
 	int rf = 0, rs = 0;
 	int count = 0;
 
-	while (count < 98)
+	while (count < 99)
 	{
 		if (f > 0)
 			printf("%i", f);
 		if (s > 0)
 			printf("%i", s);
 		printf("%i", t);
-		if (count < 97)
+		if (count < 98)
 			printf(", ");
 		count++;
 		firstt = secondt;
