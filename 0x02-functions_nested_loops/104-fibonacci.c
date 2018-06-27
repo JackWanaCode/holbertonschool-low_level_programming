@@ -14,13 +14,45 @@ int main(void)
 	int firstf = 0, secondf = 0;
 	int rf = 0, rs = 0;
 	int count = 0;
+	int l = 0;
+	int c = 0;
 
 	while (count < 98)
 	{
 		if (f > 0)
+		{
 			printf("%i", f);
+			l = s;
+			while ((l) >= 1)
+			{
+				l = l / 10;
+				c++;
+			}
+			while ((7 - c) > 0)
+			{
+				printf("%i", 0);
+				c++;
+			}
+			l = 0;
+			c = 0;
+		}
 		if (s > 0)
+		{
 			printf("%i", s);
+			l = t;
+			while (l >= 1)
+			{
+				l = l / 10;
+				c++;
+			}
+			while ((7 - c) > 0)
+			{
+				printf("%i", 0);
+				c++;
+			}
+			l = 0;
+			c = 0;
+		}
 		printf("%i", t);
 		if (count < 97)
 			printf(", ");
