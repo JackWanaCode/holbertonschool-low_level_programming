@@ -1,11 +1,10 @@
-#include <stdio.h>
 #include "holberton.h"
 
 /**
  * print_number - Entry point
  * Description: putchar any kind of integer
  * @n: number to be print
- * Return: 0 Always
+ * Return: Nothing
  */
 void print_number(int n)
 {
