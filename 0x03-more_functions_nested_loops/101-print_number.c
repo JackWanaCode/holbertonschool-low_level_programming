@@ -8,16 +8,24 @@
  */
 void print_number(int n)
 {
-	int temp1 = n / 10;
-	int temp2 = 10;
+	int temp1, temp2;
 	int num;
+	int spcase = 0;
 
-	if (n < 0)
+	if (n < 0 && n > -2147483648)
 	{
 		_putchar('-');
 		n = n * -1;
 	}
+	else if (n == -2147483648)
+	{
+		_putchar('-');
+		spcase = (n % 10) * -1;
+		n = n / -10;
+	}
 	num = n;
+	temp1 = n / 10;
+	temp2 = 10;
 	while (temp1 / 10)
 	{
 		temp1 = temp1 / 10;
@@ -30,4 +38,6 @@ void print_number(int n)
 		temp2 = temp2 / 10;
 	}
 	_putchar(n % 10 + '0');
+	if (spcase)
+		_putchar(spcase + '0');
 }
