@@ -10,7 +10,7 @@
  */
 int _atoi(char *s)
 {
-	int i;
+	int i, last_digit = 0;
 	int count_minus_sign = 0;
 	int count_figure = 1;
 	int first = -1, last = -1;
@@ -78,8 +78,15 @@ int _atoi(char *s)
 			break;
 		}
 		count_figure *= 10;
+		if (last_digit == 0)
+		{
+			last_digit = num;
+			num = 0;
+		}
 	}
 	if (count_minus_sign % 2 != 0)
-		num = num * -1;
+		num = (num * -1) - last_digit;
+	else
+		num = num + last_digit;
 	return (num);
 }
