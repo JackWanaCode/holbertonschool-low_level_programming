@@ -33,32 +33,34 @@ int _atoi(char *s)
 		else if (first != -1)
 			i = length;
 	}
-	if (first == -1)
+	if (first == -1 || (last - first) > 10)
 		return (0);
 	else if (last == -1)
 		last = first;
+	for (i = 1; i <= (last - first); i++)
+		count_figure *= 10;
 	for (i = 0; i < first; i++)
 	{
 		if (*(s + i) == '-')
 			count_minus_sign++;
 	}
 	if (count_minus_sign % 2 == 0)
-		for (i = last; i >= first; i--)
+		for (i = first; i <= last; i++)
 		{
 			cmp_num = num;
 			num += (*(s + i) - '0') * count_figure;
 			if (cmp_num > num)
 				return (0);
-			count_figure *= 10;
+			count_figure /= 10;
 		}
 	else
-		for (i = last; i >= first; i--)
+		for (i = first; i <= last; i++)
 		{
 			cmp_num = num;
 			num -= (*(s + i) - '0') * count_figure;
 			if (cmp_num < num)
 				return (0);
-			count_figure *= 10;
+			count_figure /= 10;
 		}
 	return (num);
 }
