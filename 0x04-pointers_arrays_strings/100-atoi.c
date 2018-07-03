@@ -30,7 +30,7 @@ int _atoi(char *s)
 			else
 				last = i;
 		}
-		else if (last != -1 && last == -1)
+		else if (first != -1)
 			i = length;
 	}
 	if (first == -1)
