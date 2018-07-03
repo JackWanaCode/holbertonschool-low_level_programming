@@ -26,16 +26,12 @@ int _atoi(char *s)
 		if (*(s + i) >= '0' && *(s + i) <= '9')
 		{
 			if (first == -1)
-			{
 				first = i;
-			}
 			else
 				last = i;
 		}
-		else if (last != -1)
-		{
+		else if (last != -1 && last == -1)
 			i = length;
-		}
 	}
 	if (first == -1)
 		return (0);
