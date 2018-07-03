@@ -39,6 +39,8 @@ int _atoi(char *s)
 	}
 	if (first == -1)
 		return (0);
+	else if (last == -1)
+		last = first;
 	for (i = 0; i < first; i++)
 	{
 		if (*(s + i) == '-')
