@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "holberton.h"
+#include <limits.h>
 
 /**
  * _atoi - Entry point
@@ -45,48 +46,130 @@ int _atoi(char *s)
 		if (*(s + i) == '-')
 			count_minus_sign++;
 	}
-	for (i = last; i >= first; i--)
-	{
-		switch (*(s + i))
+
+	if (count_minus_sign % 2 == 0)
+		for (i = last; i >= first; i--)
 		{
-		case '1':
-			num += (1 * count_figure);
-			break;
-		case '2':
-			num += (2 * count_figure);
-			break;
-		case '3':
-			num += (3 * count_figure);
-			break;
-		case '4':
-			num += (4 * count_figure);
-			break;
-		case '5':
-			num += (5 * count_figure);
-			break;
-		case '6':
-			num += (6 * count_figure);
-			break;
-		case '7':
-			num += (7 * count_figure);
-			break;
-		case '8':
-			num += (8 * count_figure);
-			break;
-		case '9':
-			num += (9 * count_figure);
-			break;
+			switch (*(s + i))
+			{
+			case '1':
+				if (INT_MAX - (1 * count_figure) >= num)
+					num += (1 * count_figure);
+				else
+					num = INT_MAX;
+				break;
+			case '2':
+				if (INT_MAX - (2 * count_figure) >= num)
+					num += (2 * count_figure);
+				else
+					num = INT_MAX;
+				break;
+			case '3':
+				if (INT_MAX - (3 * count_figure) >= num)
+					num += (3 * count_figure);
+				else
+					num = INT_MAX;
+				break;
+			case '4':
+				if (INT_MAX - (4 * count_figure) >= num)
+					num += (4 * count_figure);
+				else
+					num = INT_MAX;
+				break;
+			case '5':
+				if (INT_MAX - (5 * count_figure) >= num)
+					num += (5 * count_figure);
+				else
+					num = INT_MAX;
+				break;
+			case '6':
+				if (INT_MAX - (6 * count_figure) >= num)
+					num += (6 * count_figure);
+				else
+					num = INT_MAX;
+				break;
+			case '7':
+				if (INT_MAX - (7 * count_figure) >= num)
+					num += (7 * count_figure);
+				else
+					num = INT_MAX;
+				break;
+			case '8':
+				if (INT_MAX - (8 * count_figure) >= num)
+					num += (8 * count_figure);
+				else
+					num = INT_MAX;
+				break;
+			case '9':
+				if (INT_MAX - (9 * count_figure) >= num)
+					num += (9 * count_figure);
+				else
+					num = INT_MAX;
+				break;
+			}
+			count_figure *= 10;
 		}
-		count_figure *= 10;
-		if (last_digit == 0)
-		{
-			last_digit = num;
-			num = 0;
-		}
-	}
-	if (count_minus_sign % 2 != 0)
-		num = (num * -1) - last_digit;
 	else
-		num = num + last_digit;
+		for (i = last; i >= first; i--)
+		{
+			switch (*(s + i))
+			{
+			case '1':
+				if (INT_MIN + (1 * count_figure) <= num)
+					num -= (1 * count_figure);
+				else
+					num = INT_MIN;
+				break;
+			case '2':
+				if (INT_MIN + (3 * count_figure) <= num)
+					num -= (2 * count_figure);
+				else
+					num = INT_MIN;
+				break;
+			case '3':
+				if (INT_MIN + (3 * count_figure) <= num)
+					num -= (3 * count_figure);
+				else
+					num = INT_MIN;
+				break;
+			case '4':
+				if (INT_MIN + (4 * count_figure) <= num)
+					num -= (4 * count_figure);
+				else
+					num = INT_MIN;
+				break;
+			case '5':
+				if (INT_MIN + (5 * count_figure) <= num)
+					num -= (5 * count_figure);
+				else
+					num = INT_MIN;
+				break;
+			case '6':
+				if (INT_MIN + (6 * count_figure) <= num)
+					num -= (6 * count_figure);
+				else
+					num = INT_MIN;
+				break;
+			case '7':
+				if (INT_MIN + (7 * count_figure) <= num)
+					num -= (7 * count_figure);
+				else
+					num = INT_MIN;
+				break;
+			case '8':
+				if (INT_MIN + (8 * count_figure) <= num)
+					num -= (8 * count_figure);
+				else
+					num = INT_MIN;
+				break;
+			case '9':
+				if (INT_MIN + (9 * count_figure) <= num)
+					num -= (9 * count_figure);
+				else
+					num = INT_MIN;
+				break;
+			}
+			count_figure *= 10;
+		}
 	return (num);
 }
