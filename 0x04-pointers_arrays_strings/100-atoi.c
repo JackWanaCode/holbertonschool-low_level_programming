@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "holberton.h"
-#include <limits.h>
 
 /**
  * _atoi - Entry point
@@ -17,6 +16,8 @@ int _atoi(char *s)
 	int first = -1, last = -1;
 	int length = 0;
 	int num = 0;
+	int biggiest_num = 2147483647;
+	int smallest_num = -2147483648;
 
 	while (*(s + length) != '\0')
 	{
@@ -53,58 +54,58 @@ int _atoi(char *s)
 			switch (*(s + i))
 			{
 			case '1':
-				if (INT_MAX - (1 * count_figure) >= num)
+				if (biggiest_num - (1 * count_figure) >= num)
 					num += (1 * count_figure);
 				else
-					num = INT_MAX;
+					num = biggiest_num;
 				break;
 			case '2':
-				if (INT_MAX - (2 * count_figure) >= num)
+				if (biggiest_num - (2 * count_figure) >= num)
 					num += (2 * count_figure);
 				else
-					num = INT_MAX;
+					num = biggiest_num;
 				break;
 			case '3':
-				if (INT_MAX - (3 * count_figure) >= num)
+				if (biggiest_num - (3 * count_figure) >= num)
 					num += (3 * count_figure);
 				else
-					num = INT_MAX;
+					num = biggiest_num;
 				break;
 			case '4':
-				if (INT_MAX - (4 * count_figure) >= num)
+				if (biggiest_num - (4 * count_figure) >= num)
 					num += (4 * count_figure);
 				else
-					num = INT_MAX;
+					num = biggiest_num;
 				break;
 			case '5':
-				if (INT_MAX - (5 * count_figure) >= num)
+				if (biggiest_num - (5 * count_figure) >= num)
 					num += (5 * count_figure);
 				else
-					num = INT_MAX;
+					num = biggiest_num;
 				break;
 			case '6':
-				if (INT_MAX - (6 * count_figure) >= num)
+				if (biggiest_num - (6 * count_figure) >= num)
 					num += (6 * count_figure);
 				else
-					num = INT_MAX;
+					num = biggiest_num;
 				break;
 			case '7':
-				if (INT_MAX - (7 * count_figure) >= num)
+				if (biggiest_num - (7 * count_figure) >= num)
 					num += (7 * count_figure);
 				else
-					num = INT_MAX;
+					num = biggiest_num;
 				break;
 			case '8':
-				if (INT_MAX - (8 * count_figure) >= num)
+				if (biggiest_num - (8 * count_figure) >= num)
 					num += (8 * count_figure);
 				else
-					num = INT_MAX;
+					num = biggiest_num;
 				break;
 			case '9':
-				if (INT_MAX - (9 * count_figure) >= num)
+				if (biggiest_num - (9 * count_figure) >= num)
 					num += (9 * count_figure);
 				else
-					num = INT_MAX;
+					num = biggiest_num;
 				break;
 			}
 			count_figure *= 10;
@@ -115,58 +116,58 @@ int _atoi(char *s)
 			switch (*(s + i))
 			{
 			case '1':
-				if (INT_MIN + (1 * count_figure) <= num)
+				if (smallest_num + (1 * count_figure) <= num)
 					num -= (1 * count_figure);
 				else
-					num = INT_MIN;
+					num = smallest_num;
 				break;
 			case '2':
-				if (INT_MIN + (3 * count_figure) <= num)
+				if (smallest_num + (3 * count_figure) <= num)
 					num -= (2 * count_figure);
 				else
-					num = INT_MIN;
+					num = smallest_num;
 				break;
 			case '3':
-				if (INT_MIN + (3 * count_figure) <= num)
+				if (smallest_num + (3 * count_figure) <= num)
 					num -= (3 * count_figure);
 				else
-					num = INT_MIN;
+					num = smallest_num;
 				break;
 			case '4':
-				if (INT_MIN + (4 * count_figure) <= num)
+				if (smallest_num + (4 * count_figure) <= num)
 					num -= (4 * count_figure);
 				else
-					num = INT_MIN;
+					num = smallest_num;
 				break;
 			case '5':
-				if (INT_MIN + (5 * count_figure) <= num)
+				if (smallest_num + (5 * count_figure) <= num)
 					num -= (5 * count_figure);
 				else
-					num = INT_MIN;
+					num = smallest_num;
 				break;
 			case '6':
-				if (INT_MIN + (6 * count_figure) <= num)
+				if (smallest_num + (6 * count_figure) <= num)
 					num -= (6 * count_figure);
 				else
-					num = INT_MIN;
+					num = smallest_num;
 				break;
 			case '7':
-				if (INT_MIN + (7 * count_figure) <= num)
+				if (smallest_num + (7 * count_figure) <= num)
 					num -= (7 * count_figure);
 				else
-					num = INT_MIN;
+					num = smallest_num;
 				break;
 			case '8':
-				if (INT_MIN + (8 * count_figure) <= num)
+				if (smallest_num + (8 * count_figure) <= num)
 					num -= (8 * count_figure);
 				else
-					num = INT_MIN;
+					num = smallest_num;
 				break;
 			case '9':
-				if (INT_MIN + (9 * count_figure) <= num)
+				if (smallest_num + (9 * count_figure) <= num)
 					num -= (9 * count_figure);
 				else
-					num = INT_MIN;
+					num = smallest_num;
 				break;
 			}
 			count_figure *= 10;
