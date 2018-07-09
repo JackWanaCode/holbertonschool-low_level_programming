@@ -15,8 +15,6 @@ char *cap_string(char *s)
 
 	for (i = 1; *(s + i) != '\0'; i++)
 	{
-		if (*(s + i) == '\t')
-			*(s + i) = ' ';
 		if (*(s + i) >= 'a' && *(s + i) <= 'z')
 		{
 			for (j = 0; *(string + j) != '\0'; j++)
