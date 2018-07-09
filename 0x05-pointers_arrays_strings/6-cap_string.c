@@ -13,6 +13,8 @@ char *cap_string(char *s)
 	char string[] = " \t\v\n,.!?\"(){}";
 	int i, j;
 
+	if (*(s) >= 'a' && *(s) <= 'z')
+		*(s) -= 32;
 	for (i = 1; *(s + i) != '\0'; i++)
 	{
 		if (*(s + i) >= 'a' && *(s + i) <= 'z')
