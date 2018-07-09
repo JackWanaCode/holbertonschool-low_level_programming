@@ -12,16 +12,20 @@
  */
 char *_strncpy(char *dest, char *src, int n)
 {
-	int i;
+	int i, j;
 
 	for (i = 0; i < n; i++)
 	{
-		if (*(src + i) != '\n')
+		if (*(src + i) != '\0')
 		{
 			*(dest + i) = *(src + i);
 		}
 		else
+		{
+			for (j = i; j < n; j++)
+				*(dest + j) = '\0';
 			i = n;
+		}
 	}
 	return (dest);
 }
