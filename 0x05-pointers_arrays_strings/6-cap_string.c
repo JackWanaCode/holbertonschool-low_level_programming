@@ -10,11 +10,13 @@
  */
 char *cap_string(char *s)
 {
-	char string[] = " '\t''\v''\n',;.!?'\"'(){}";
+	char string[] = " '\n',.!?'\"'(){}";
 	int i, j;
 
 	for (i = 1; *(s + i) != '\0'; i++)
 	{
+		if (*(s + i) == '\t' || *(s + i) == ';')
+			*(s + i) = ' ';
 		if (*(s + i) >= 'a' && *(s + i) <= 'z')
 		{
 			for (j = 0; *(string + j) != '\0'; j++)
