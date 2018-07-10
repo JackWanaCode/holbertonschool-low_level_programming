@@ -1,8 +1,9 @@
+#include <stdio.h>
 #include "holberton.h"
 
 /**
  * infinite_add - Entry point
- * Description: plus 2 number strings
+ * Description: plus 2 strings of numbers
  * @n1: first string
  * @n2: second string
  * @r: return string of value
