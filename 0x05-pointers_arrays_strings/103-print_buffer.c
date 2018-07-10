@@ -20,16 +20,18 @@ void print_buffer(char *b, int size)
 		printf("%08x: ", i);
 		count = 0;
 		tmp = i;
-		while (count < 5)
+		while (count < 10)
 		{
 			if (i >= size)
-				printf("     ");
+				printf("  ");
 			else
 			{
-				printf("%02x", *(b + i++));
-				printf("%02x ", *(b + i++));
+				printf("%02x", *(b + i));
 			}
+			if (i % 2 == 1)
+				printf(" ");
 			count++;
+			i++;
 		}
 		i = tmp;
 		count = 0;
