@@ -16,7 +16,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	int i, cut;
 	int l_of_n1, l_of_n2;
 	int m1 = 0, m2 = 0, overFlow = 0, ret = 0;
-	char ret_char[size_r];
+	char ret_c[size_r];
 
 	for (l_of_n1 = 0; *(n1 + l_of_n1) != '\0'; l_of_n1++)
 	{}
@@ -51,7 +51,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 			ret = 0;
 			overFlow = 1;
 		}
-		ret_char[i] = ret + '0';
+		ret_c[i] = ret + '0';
 		m1 = m2 + overFlow;
 		if (ret == 0 && m1 == 0)
 		{
@@ -66,7 +66,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		l_of_n2--;
 	}
 	for (i = 0; i + cut < size_r; i++)
-		*(r + i) = *(ret_char + i + cut);
+		*(r + i) = *(ret_c + i + cut);
 	*(r + i) = '\0';
 	return (r);
 }
