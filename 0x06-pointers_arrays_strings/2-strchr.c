@@ -2,10 +2,10 @@
 #include "holberton.h"
 
 /**
- * _memcpy - Entry point
+ * _strchr - Entry point
  * Description: return a pointer to the first occurrence of the character c.
  * @s: string that will be iterate to check.
- * @n: character will be check with s. If it doesn't match, return 0.
+ * @c: character will be check with s. If it doesn't match, return 0.
  *
  * Return: pointer to pointer.
  */
