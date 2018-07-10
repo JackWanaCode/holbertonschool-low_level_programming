@@ -26,7 +26,7 @@ unsigned int _strspn(char *s, char *accept)
 			}
 		}
 		if (*(s + j) == '\0')
-			return (j);
+			return (j + 1);
 	}
 	return (max + 1);
 }
