@@ -9,29 +9,22 @@
  */
 void print_number(int n)
 {
-	int digit = 1;
-	int last_num = n % 10;
-	int tmp_num;
-
-	n = n / 10;
-	if (n < 0)
+	if (n <= 9 && n >= 0)
 	{
-		last_num *= -1;
+		_putchar(n + '0');
+	}
+	else if (n >= -9 && n <= -1)
+	{
+		n = n * -1;
 		_putchar('-');
-		n *= -1;
+		_putchar(n + '0');
 	}
-	tmp_num = n;
-	while (tmp_num > 0)
+	else
 	{
-		digit *= 10;
-		tmp_num /= 10;
+		print_number(n / 10);
+		n = n % 10;
+		if (n < 0)
+			n *= -1;
+		_putchar(n + '0');
 	}
-	digit /= 10;
-	while (digit > 0)
-	{
-		_putchar (n / digit + '0');
-		n = n % digit;
-		digit /= 10;
-	}
-	_putchar(last_num + '0');
 }
