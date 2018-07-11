@@ -15,17 +15,18 @@ char *_strstr(char *haystack, char *needle)
 
 	if (*needle == '\0')
 		return (haystack);
-	for (i = 0; *(needle + i) != '\0'; i++)
+	for (i = 0; *(haystack + i) != '\0'; i++)
 	{
-		for (j = 0; *(haystack + j) != '\0'; j++)
+		for (j = 0; *(needle + j) != '\0'; j++)
 		{
-			if (*(needle + i) == *(haystack + j))
+			if (*(haystack + i) == *(needle + j))
 			{
-				if (*(needle + i + 1) == '\0' && j >= i)
-					return (haystack + j - i);
-				else if (needle[i + 1] != haystack[j + 1])
-					return (NULL);
-				i++;
+				while (*(haystack + i + j) == *(needle + j))
+				{
+					if (*(needle + j + 1) == '\0')
+						return (haystack + i);
+					j++;
+				}
 			}
 		}
 	}
