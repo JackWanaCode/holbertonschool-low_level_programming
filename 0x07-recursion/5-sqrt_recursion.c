@@ -33,7 +33,7 @@ int _sqrt_recursion(int n)
 	int m = 2;
 
 	if (n < 0)
-		return (0);
+		return (-1);
 	else if (n == 0 || n == 1)
 		return (n);
 	root_it(n, &m);
