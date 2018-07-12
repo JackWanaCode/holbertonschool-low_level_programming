@@ -5,18 +5,20 @@
  * root_it - Entry point
  * Description: taking root of number
  * @n: num to be checked
- * @m: check result
- * Return: return m if root, else -1
+ * @m: value after root
+ * Return: nothing
  */
-int root_it(int n, int m)
+int root_it(int n, int *m)
 {
-	if (n % m == 0 && n / m == m)
-		return (m);
-	else if (m >= n / 2)
-		return (-1);
-	root_it(n, m + 1);
-	if (m == 0)
-		return (m);
+	if (n % *m == 0 && *m == n / *m)
+		return;
+	else if (*m >= n / 2)
+		*m = -1;
+	else if (*m < n /2)
+	{
+		*m = *m + 1;
+		root_it(n, m);
+	}
 }
 /**
  * _sqrt_recursion - Entry point
@@ -34,6 +36,6 @@ int _sqrt_recursion(int n)
 		return (0);
 	else if (n == 0 || n == 1)
 		return (n);
-	n = root_it(n, m);
+	n = root_it(n, &m);
 	return (n);
 }
