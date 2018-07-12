@@ -8,18 +8,19 @@
  * @m: value after root
  * Return: nothing
  */
-int root_it(int n, int *m)
+void root_it(int n, int *m)
 {
 	if (n % *m == 0 && *m == n / *m)
 		return;
 	else if (*m >= n / 2)
 		*m = -1;
-	else if (*m < n /2)
+	else if (*m < n / 2)
 	{
 		*m = *m + 1;
 		root_it(n, m);
 	}
 }
+
 /**
  * _sqrt_recursion - Entry point
  * Description: take natural root of number
@@ -30,12 +31,11 @@ int root_it(int n, int *m)
 int _sqrt_recursion(int n)
 {
 	int m = 2;
-	int root_it(int n, int m);
 
 	if (n < 0)
 		return (0);
 	else if (n == 0 || n == 1)
 		return (n);
-	n = root_it(n, &m);
-	return (n);
+	root_it(n, &m);
+	return (m);
 }
