@@ -2,43 +2,52 @@
 #include "holberton.h"
 
 /**
- * _checkchar - Entry point
- * Description: compare 2 chars
- * @s: character in string
- * @c: character to be checked
- * @n: 1 for true, 0 for false
- * Return: nothing
- */
-void _checkchar(char *s, char c, int *n)
-{
-	if (*(s) != '\0')
-		_checkchar((s + 1), c, n);
-	else
-	{
-		if (*(s - 1) != c)
-			*n = 0;
-		else
-			*n = 1;
-	}
-}
-
-/**
- * is_palidrome - Entry point
- * Description: check the string is palidrome?
- * @s: string to be checked
+ * len - Entry point
+ * Description: get len of sring to pointer point to
+ * @s: pointer pointing to a string
  *
- * Return: 1 if true, or 0 for false
+ * Return: length
+ */
+int len(char *s)
+{
+	int i = 0;
+
+	if (*s != '\0')
+		i = 1 + len(s + 1);
+	else
+		return (0);
+	return (i);
+}
+/**
+ * check_pal - Entry point
+ * Description: help to check palidrome
+ * @s: pointer pointing to a string
+ * @i: start point of string
+ * @z: end point of string
+ *
+ * Return: 1 if palidrome, else 0
+ */
+int check_pal(char *s, int i, int z)
+{
+	if (s[i] != s[z])
+		return (0);
+	else if (i >= z)
+		return (1);
+	else
+		return (check_pal(s, i + 1, z - 1));
+}
+/**
+ * is_palindrome - Entry point
+ * Description: check palidrome
+ * @s: pointer pointing to a string
+ *
+ * Return: 1 if palidrome, else 0
  */
 int is_palindrome(char *s)
 {
-	char c = *s;
-	int n;
+	int i = 0;
+	int z;
 
-	if (!c)
-		n = 1;
-	if (*(s) != '\0')
-		_checkchar(s, c, &n);
-	else
-		is_palindrome(s + 1);
-	return (n);
+	z = len(s) - 1;
+	return (check_pal(s, i, z));
 }
