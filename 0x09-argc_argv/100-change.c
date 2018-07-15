@@ -12,7 +12,6 @@
 */
 int main(int argc, char **argv)
 {
-	(void)argv;
 	int count = 0;
 	int count_in = 0;
 	int price;
