@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 		printf("Error\n");
 		return (1);
 	}
-	else if (atoi(argv[1]))
+	else if (atoi(argv[1]) > 0)
 	{
 		price = atoi(argv[1]);
 		while (price > 0)
@@ -59,6 +59,8 @@ int main(int argc, char **argv)
 			}
 		}
 	}
+	else
+		price = 0;
 	printf("%i\n", count);
 	return (0);
 }
