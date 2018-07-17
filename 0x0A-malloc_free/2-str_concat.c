@@ -36,13 +36,19 @@ char *str_concat(char *s1, char *s2)
 	char *empty_str = "";
 	char *str_cc = NULL;
 
-	while (s1[i])
+	if (s1 != NULL)
 	{
-		i++;
+		while (s1[i])
+		{
+			i++;
+		}
 	}
-	while (s2[j])
+	if (s2 != NULL)
 	{
-		j++;
+		while (s2[j])
+		{
+			j++;
+		}
 	}
 	str_cc = malloc(sizeof(char) * (i + j) + 1);
 	if (str_cc == NULL)
