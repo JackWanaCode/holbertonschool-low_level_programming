@@ -3,7 +3,7 @@
 #include "holberton.h"
 
 /**
- * create_array - Entry point
+ * _strdup - Entry point
  * Description: Use malloc to duplicate a string
  * @str: string to be duplicated
   *
@@ -18,7 +18,7 @@ char *_strdup(char *str)
 	{
 		i++;
 	}
-	dup_str = malloc(sizeof(char) * i);
+	dup_str = malloc(sizeof(char) * i + 1);
 	if (dup_str == NULL)
 		return (NULL);
 	while (i >= 0)
