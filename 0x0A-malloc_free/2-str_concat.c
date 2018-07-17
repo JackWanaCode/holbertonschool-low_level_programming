@@ -7,13 +7,19 @@
  * Description: copy s1 to dest.
  * @dest: destination
  * @s: string to be copied.
+ * @empty_str: if s is NULL, concat empty string to dest.
  * Return: a pointer to new string
  */
-void strcp(char *dest, char *s)
+void strcp(char *dest, char *s, char *empty_str)
 {
-	while (*s != '\0')
+	if (s == NULL)
+		*dest = *empty_str;
+	else
 	{
-		*dest++ = *s++;
+		while (*s != '\0')
+		{
+			*dest++ = *s++;
+		}
 	}
 }
 
@@ -27,6 +33,7 @@ void strcp(char *dest, char *s)
 char *str_concat(char *s1, char *s2)
 {
 	int i = 0, j = 0;
+	char *empty_str = "";
 	char *str_cc = NULL;
 
 	while (s1[i])
@@ -42,8 +49,8 @@ char *str_concat(char *s1, char *s2)
 	{
 		return (NULL);
 	}
-	strcp(str_cc, s1);
-	strcp(str_cc + i, s2);
+	strcp(str_cc, s1, empty_str);
+	strcp(str_cc + i, s2, empty_str);
 	str_cc[i + j] = '\0';
 	return (str_cc);
 }
