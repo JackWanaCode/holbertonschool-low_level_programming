@@ -4,8 +4,8 @@
 
 /**
  * _strlen - Entry point
- * Description: get length of string.
- * @s: string will be check.
+ * Description: get length of string
+ * @s: string will be check
  * Return: length of string.
  */
 int _strlen(char *s)
