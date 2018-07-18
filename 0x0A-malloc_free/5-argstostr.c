@@ -32,7 +32,7 @@ char *argstostr(int ac, char **av)
 	int l = 0;
 	char *argv_concat;
 
-	if (ac == 0 || av[1] == NULL)
+	if (ac == 0 || av == NULL)
 		return (NULL);
 	for (i = 1; i < ac; i++)
 	{
