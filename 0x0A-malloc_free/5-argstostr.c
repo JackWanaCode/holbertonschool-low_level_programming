@@ -32,7 +32,7 @@ char *argstostr(int ac, char **av)
 	int l = 0;
 	char *argv_concat;
 
-	if (ac == 1 || av[1] == NULL)
+	if (ac == 0 || av[1] == NULL)
 		return (NULL);
 	for (i = 1; i < ac; i++)
 	{
@@ -41,7 +41,7 @@ char *argstostr(int ac, char **av)
 	argv_concat = malloc(sizeof(char) * l);
 	if (argv_concat == NULL)
 		return (NULL);
-	for (i = 1, k = 0; i < ac; i++)
+	for (i = 0, k = 0; i < ac; i++)
 	{
 		for (j = 0; av[i][j] != '\0'; j++, k++)
 			argv_concat[k] = av[i][j];
