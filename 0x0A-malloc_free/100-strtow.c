@@ -38,6 +38,8 @@ char *_strmod(char *str, int *h, int *l)
 	{
 		i++;
 	}
+	if (str[i - 1] != ' ')
+		*h = 1;
 	dup_str = malloc(sizeof(char) * i + 1);
 	if (dup_str == NULL)
 	{
@@ -46,9 +48,10 @@ char *_strmod(char *str, int *h, int *l)
 	if (str[0] != ' ')
 	{
 		dup_str[0] = str[0];
+		j++;
 	}
 	k = 1;
-	while (k < i)
+	while (str[k] != '\0')
 	{
 		if (str[k] != ' ')
 		{
@@ -64,7 +67,7 @@ char *_strmod(char *str, int *h, int *l)
 			*h = *h + 1;
 		}
 		else
-			k++;
+		k++;
 	}
 	*l = j;
 	while (j < i)
@@ -84,7 +87,8 @@ char **argstostr1(int h, char *str)
 	int i, j = 0, k = 0;
 	char **array_of_str;
 
-	array_of_str = malloc(sizeof(char) * (h + 1));
+	printf("h is %i\n", h);
+	array_of_str = malloc(sizeof(char *) * h);
 	if (array_of_str == NULL)
 	{
 		return (NULL);
@@ -97,7 +101,7 @@ char **argstostr1(int h, char *str)
 		}
 		if (i == h)
 			k = 0;
-		array_of_str[i] = malloc(sizeof(char) * k + 1);
+		array_of_str[i] = malloc(sizeof(char) * (k + 1));
 		if (array_of_str[i] == NULL)
 		{
 			while (i >= 0)
@@ -132,7 +136,7 @@ char **argstostr1(int h, char *str)
  */
 char **strtow(char *str)
 {
-	int h = 0, l;
+	int h = 0, l = 0;
 	char *re_str = NULL;
 	char **restr = NULL;
 
