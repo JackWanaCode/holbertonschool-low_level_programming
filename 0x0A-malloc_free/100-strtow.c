@@ -139,6 +139,8 @@ char **strtow(char *str)
 	char *re_str = NULL;
 	char **restr = NULL;
 
+	if (!str || !*str)
+		return (NULL);
 	re_str = _strmod(str, &h, &l);
 	restr = argstostr1(h, re_str);
 	return (restr);
