@@ -1,10 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "holberton.h"
 
-
+/**
+ * _strlen - Entry point
+ * Description: returns length of a string
+ * @s: input string to count
+ * Return: length of string
+ */
 int _strlen(char *s)
 {
 	int i;
+
 	while (s[i] != '\0')
 	{
 		i++;
@@ -12,7 +19,14 @@ int _strlen(char *s)
 	return (i);
 }
 
-
+/**
+ * _strmod - Entry point.
+ * Description: modify the string
+ * @str: string to be checked
+ * @h: 1st dimenstion of string
+ * @l: length of the string
+ * Return: a new string that splitted by space.
+ */
 char *_strmod(char *str, int *h, int *l)
 {
 	int i = 0, j = 0, k = 0;
@@ -58,7 +72,14 @@ char *_strmod(char *str, int *h, int *l)
 	return (dup_str);
 }
 
-char **argstostr(int h, char *str)
+/**
+ * argstostr1 - Entry point.
+ * Descrition: return a double pointer to a 2d array
+ * @h: number of rows
+ * @str: string to checked
+ * Return: 2d array
+ */
+char **argstostr1(int h, char *str)
 {
 	int i, j = 0, k = 0;
 	char **array_of_str;
@@ -70,10 +91,12 @@ char **argstostr(int h, char *str)
 	}
 	for (i = 0; i <= h; i++)
 	{
-		for (k = 0; str[j] != ' '; j++)
+		for (k = 0; str[j] != ' ' && i < h; j++)
 		{
 			k++;
 		}
+		if (i == h)
+			k = 0;
 		array_of_str[i] = malloc(sizeof(char) * k + 1);
 		if (array_of_str[i] == NULL)
 		{
@@ -97,18 +120,23 @@ char **argstostr(int h, char *str)
 		array_of_str[i][k] = '\0';
 		j++;
 	}
-	array_of_str[i] = '\0';
+	array_of_str[i] = NULL;
 	return (array_of_str);
 }
 
+/**
+ * strtow - Entry Point
+ * Description: split a given string and convert it to new 2d array.
+ * @str: input string
+ * Return: pointer to pointer to 2d array
+ */
 char **strtow(char *str)
 {
-	int h, l;
+	int h = 0, l;
 	char *re_str = NULL;
 	char **restr = NULL;
 
 	re_str = _strmod(str, &h, &l);
-	restr = argstostr(h, re_str);
-	free(re_str);
+	restr = argstostr1(h, re_str);
 	return (restr);
 }
