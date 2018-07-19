@@ -87,7 +87,6 @@ char **argstostr1(int h, char *str)
 	int i, j = 0, k = 0;
 	char **array_of_str;
 
-	printf("h is %i\n", h);
 	array_of_str = malloc(sizeof(char *) * h);
 	if (array_of_str == NULL)
 	{
