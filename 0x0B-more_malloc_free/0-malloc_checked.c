@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "holberton.h"
-#include <limits.h>
 
 /**
  * malloc_checked - Entry Point
