@@ -147,13 +147,26 @@ int main(int argc, char **argv)
 	unsigned int i, j, k, m;
 
 	if (argc != 3)
+	{
+		printf("Error\n");
 		exit(98);
+	}
 	for (i = 0, l1 = 0; argv[1][i] != '\0'; i++, l1++)
+	{
 		if (argv[1][i] < '0' || argv[1][i] > '9')
+		{
+			printf("Error\n");
 			exit(98);
+		}
+	}
 	for (i = 0, l2 = 0; argv[2][i] != '\0'; i++, l2++)
+	{
 		if (argv[2][i] < '0' || argv[2][i] > '9')
+		{
+			printf("Error\n");
 			exit(98);
+		}
+	}
 	l = l1 + l2;
 	n1 = malloc(sizeof(char) * l1 + 1);
 	if (n1 == NULL)
