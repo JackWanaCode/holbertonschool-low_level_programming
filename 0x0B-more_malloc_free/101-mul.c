@@ -220,13 +220,13 @@ int main(int argc, char **argv)
 		if (m2 != '0')
 			result[m] = m2;
 	}
-	while (result[m] == '0')
+	while (result[m] == '0' && m > 0)
 	{
 		result[m] = '\0';
 		m--;
 	}
 	rev_string(result);
-	printf("result is %s\n", result);
+	printf("%s\n", result);
 	free(n1);
 	free(n2);
 	free(temp_re);
