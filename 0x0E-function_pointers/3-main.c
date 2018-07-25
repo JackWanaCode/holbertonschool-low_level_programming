@@ -22,9 +22,9 @@ int main(int argc, char **argv)
 	}
 	if (c1 != '\0')
 	{
-                printf("Error\n");
-                exit(99);
-        }
+		printf("Error\n");
+		exit(99);
+	}
 	if (c != '+' && c != '-' && c != '*' && c != '/' && c != '%')
 	{
 		printf("Error\n");
