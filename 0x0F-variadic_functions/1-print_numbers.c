@@ -5,7 +5,7 @@
 /**
  * print_numbers - Entry point
  * Description: print number follow by given format
- * separator: pointer to const char that contain separator(s) between numbers
+ * @separator: pointer to const char that contain separator(s) between numbers
  * @n: numbers of arguments
  * @...: elipses
  *
@@ -17,6 +17,8 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 	int print_num;
 	va_list arguments;
 
+	if (!separator)
+		return;
 	va_start(arguments, n);
 	for (i = 0; i < n; i++)
 	{
