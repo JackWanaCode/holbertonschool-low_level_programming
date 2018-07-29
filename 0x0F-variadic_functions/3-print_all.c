@@ -14,14 +14,16 @@ void print_all(const char * const format, ...)
 {
 	unsigned int j = 0;
 	va_list arguments;
+	char c;
+	char *s;
 
 	va_start(arguments, format);
 	while (format[j] != '\0')
 	{
-		if (j > 0 && (format[j] == 'c' || format[j] == 'i' || \
-format[j] == 'f' || format[j] == 's'))
+		c = format[j];
+		if (j > 0 && (c == 'c' || c == 'i' || c == 'f' || c == 's'))
 			printf(", ");
-		switch (format[j])
+		switch (c)
 		{
 		case 'i':
 			printf("%i", va_arg(arguments, int));
@@ -36,7 +38,10 @@ format[j] == 'f' || format[j] == 's'))
 			j++;
 			break;
 		case 's':
-			printf("%s", va_arg(arguments, char *));
+			s = va_arg(arguments, char *);
+			if (s == NULL)
+				s = "(nil)";
+			printf("%s", s);
 			j++;
 			break;
 		default:
