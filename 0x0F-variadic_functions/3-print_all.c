@@ -17,9 +17,13 @@ void print_all(const char * const format, ...)
 	va_list arguments;
 	char c;
 	char *s;
-
+	while (format == NULL)
+	{
+		printf("Error\n");
+		return;
+	}
 	va_start(arguments, format);
-	while (format[j] != '\0' && format != NULL)
+	while (format[j] != '\0' && format)
 	{
 		c = format[j];
 		if (chk != 0 && (c == 'c' || c == 'i' || c == 'f' || c == 's'))
