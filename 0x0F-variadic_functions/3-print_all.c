@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdarg.h>
-#include <stdlib.h>
 #include "variadic_functions.h"
 
 /**
@@ -19,13 +18,8 @@ void print_all(const char * const format, ...)
 	char c;
 	char *s;
 
-	if (format == NULL)
-	{
-		printf("Error\n");
-		return;
-	}
 	va_start(arguments, format);
-	while (format[j] != '\0')
+	while (format[j] != '\0' && format != NULL)
 	{
 		c = format[j];
 		if (chk != 0 && (c == 'c' || c == 'i' || c == 'f' || c == 's'))
