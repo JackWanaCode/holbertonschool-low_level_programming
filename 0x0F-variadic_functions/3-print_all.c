@@ -22,7 +22,7 @@ void print_all(const char * const format, ...)
 	if (format == NULL)
 	{
 		printf("Error\n");
-		exit(98);
+		return;
 	}
 	va_start(arguments, format);
 	while (format[j] != '\0')
