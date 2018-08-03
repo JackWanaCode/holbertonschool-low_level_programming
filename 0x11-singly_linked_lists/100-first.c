@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * main - check the code for Holberton School students.
+ * turtle_first - the function that excuted before main
  *
  * Return: Always 0.
  */
