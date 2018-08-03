@@ -4,19 +4,17 @@
 #include "lists.h"
 
 /**
- * add_node_end - Entry point
- * Description: print number of element in the linked list
+ * free_lust - Entry point
+ * Description: free list_t
  * @head: first node
- * @str: content of string
- * Return: node.
+ * Return: nothing
  */
 void free_list(list_t *head)
 {
-	list_t *p;
-
-	for (p = head; p->next != NULL; p = p->next)
+	while (head != NULL)
 	{
-		free(p->str);
-		free(p);
+		free(head->str);
+		free(head);
+		head = head->next;
 	}
 }
