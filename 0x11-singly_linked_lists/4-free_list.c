@@ -4,7 +4,7 @@
 #include "lists.h"
 
 /**
- * free_lust - Entry point
+ * free_list - Entry point
  * Description: free list_t
  * @head: first node
  * Return: nothing
