@@ -11,17 +11,19 @@
  */
 size_t free_listint_safe(listint_t **h)
 {
-	listint_t *curr = NULL;
-	size_t struct_size = sizeof(listint_t);
-	size_t i = 0;
+	listint_t *c;
+	long i = 0;
 
-	while (sizeof(*h) == struct_size)
+
+	while (*h)
 	{
-		curr = *h;
-		free(curr);
-		*h = (**h).next;
+		c = *h;
+		free(*h);
+		if (c - c->next < 0)
+			break;
+		*h = c->next;
 		i++;
 	}
 	*h = NULL;
-	return (struct_size * i);
+	return (sizeof(listint_t) * i);
 }
