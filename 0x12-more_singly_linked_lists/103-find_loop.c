@@ -11,12 +11,11 @@
  */
 listint_t *find_listint_loop(listint_t *head)
 {
-	const listint_t *c = head;
-	long d = head - head->next;
+	listint_t *c = head;
 
 	while (c != NULL)
 	{
-		if ((c - c->next < 0 && d > 0) || (c - c->next > 0 && d < 0))
+		if (c - c->next < 0 || c == c->next)
 		{
 			return (c->next);
 		}
