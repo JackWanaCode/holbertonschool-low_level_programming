@@ -15,7 +15,7 @@ void print_binary(unsigned long int n)
 
 	/* find maximum max that = 2^k but less than or equal n */
 	if (n == ULONG_MAX)
-		count = 31;
+		count = 32;
 	else
 		while (max << 1 <= n)
 		{
