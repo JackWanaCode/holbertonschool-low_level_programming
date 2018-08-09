@@ -3,25 +3,6 @@
 #include "holberton.h"
 
 /**
- * power2 - Entry point
- * Description: calculate power of 2
- * @n: number will be powered
- * Return: nothing.
- */
-unsigned int power2(int n)
-{
-	unsigned int result = 1;
-	int i = 0;
-
-	while (i < n)
-	{
-		result *= 2;
-		i++;
-	}
-	return (result);
-}
-
-/**
  * print_binary - Entry point
  * Description: print binary number to the screen
  * @n: base 10 number
@@ -36,10 +17,10 @@ void print_binary(unsigned long int n)
 	if (n == ULONG_MAX)
 		count = 31;
 	else
-		while (max * 2 <= n)
+		while (max << 1 <= n)
 		{
 			count++;
-			max *= 2;
+			max <<= 1;
 		}
 
 	/* while loop to compare n and max */
@@ -53,6 +34,6 @@ void print_binary(unsigned long int n)
 		else if (n < max || n == 0)
 			putchar('0');
 		count--;
-		max = power2(count);
+		max >>= 1;
 	}
 }
