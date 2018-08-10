@@ -7,6 +7,7 @@
  * get_bit - Entry point
  * Description: print value of bit at index
  * @n: base 2 number
+ * @index: index of bit will be checked
  * Return: nothing.
  */
 int get_bit(unsigned long int n, unsigned int index)
@@ -15,9 +16,9 @@ int get_bit(unsigned long int n, unsigned int index)
 
 	while (i < index)
 	{
-		n = n >> 1;
 		if (n == 0)
-			break;
+                        break;
+		n = n >> 1;
 		i++;
 	}
 	if (i == index)
