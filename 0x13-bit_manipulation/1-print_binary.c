@@ -11,34 +11,24 @@
 void print_binary(unsigned long int n)
 {
 	unsigned long int max = 1;
-	unsigned long int m = n;
 	int count = 0;
 
-	/* special case for unsigned long max, when max always less than n */
-	if (n == ULONG_MAX)
-	{
- 		m = (m >> 1) + 1;
-		count++;
-	}
-
 	/*find maximum max that = 2^k but less than or equal  */
-	while (max << 1 <= m)
+	while (max <= n >> 1)
 	{
 		count++;
 		max = max << 1;
-		if (max == m)
-			break;
- 	}
+	}
 
 	/* while loop to compare n and max */
 	while (count >= 0)
 	{
-		if (m >= max && m != 0)
+		if (n >= max && n != 0)
 		{
 			putchar('1');
-			m = m - max;
+			n = n - max;
 		}
-		else if (m < max || m == 0)
+		else if (n < max || n == 0)
 			putchar('0');
 		count--;
 		max >>= 1;
