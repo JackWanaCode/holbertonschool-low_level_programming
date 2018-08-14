@@ -41,7 +41,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 				bool = 0;
 			}
 		}
-		if (write(1, buff, n) >= 0)
+		if (write(STDOUT_FILENO, buff, n) >= 0)
 			n = 0;
 		else
 			return (0);
