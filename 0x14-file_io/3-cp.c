@@ -23,19 +23,19 @@ int main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		dprintf(STDOUT_FILENO, "%s\n", "Usage: cp file_from file_to");
+		dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
 		exit(97);
 	}
 	fd1 = open(argv[1], O_RDONLY);
 	if (fd1 == -1)
 	{
-		dprintf(STDOUT_FILENO, "%s %s\n", rd, argv[1]);
+		dprintf(STDERR_FILENO, "%s %s\n", rd, argv[1]);
 		exit(98);
 	}
 	fd2 = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (fd2 == -1)
 	{
-		dprintf(STDOUT_FILENO, "%s %s\n", wr, argv[2]);
+		dprintf(STDERR_FILENO, "%s %s\n", wr, argv[2]);
 		exit(99);
 	}
 	while (1)
@@ -50,13 +50,13 @@ int main(int argc, char **argv)
 				;
 			else
 			{
-				dprintf(STDOUT_FILENO, "%s %s\n", wr, argv[2]);
+				dprintf(STDERR_FILENO, "%s %s\n", wr, argv[2]);
 				exit(99);
 			}
 		}
 		else if (n < 0)
 		{
-			dprintf(STDOUT_FILENO, "%s %s\n", rd, argv[1]);
+			dprintf(STDERR_FILENO, "%s %s\n", rd, argv[1]);
 			exit(98);
 		}
 		else
@@ -66,13 +66,13 @@ int main(int argc, char **argv)
 	i = close(fd1);
 	if (i < 0)
 	{
-		dprintf(STDOUT_FILENO, "%s %i\n", cl, fd1);
+		dprintf(STDERR_FILENO, "%s %i\n", cl, fd1);
 		exit(100);
 	}
 	i = close(fd2);
 	if (i < 0)
 	{
-		dprintf(STDOUT_FILENO, "%s %i\n", cl, fd2);
+		dprintf(STDERR_FILENO, "%s %i\n", cl, fd2);
 		exit(100);
 	}
 	return (0);
