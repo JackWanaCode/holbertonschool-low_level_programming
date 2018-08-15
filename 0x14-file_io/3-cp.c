@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 		if (n > 0)
 		{
 			if (write(fd2, buff, n) >= 0)
-				continue;
+				;
 			else
 			{
 				write(STDOUT_FILENO, error_str, 27);
