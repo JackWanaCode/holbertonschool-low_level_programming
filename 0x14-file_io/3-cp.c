@@ -65,7 +65,6 @@ int main(int argc, char **argv)
 			break;
 		free(buff);
 	}
-	write(fd2, "\n", 1);
 	i = close(fd1);
 	if (i < 0)
 	{
