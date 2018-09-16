@@ -6,9 +6,9 @@
 /**
  * insert_dnodeint_at_index - Entry point
  * Description: insert node at index
- * @head: head of list
+ * @h: head of list
  * @idx: location where node will be inserted
- * @n: value of new node
+ * @n: value of node.
  * Return: new node.
  */
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
