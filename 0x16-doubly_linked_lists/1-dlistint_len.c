@@ -4,7 +4,7 @@
 #include "lists.h"
 
 /**
- * print_dlistint - Entry point
+ * dlistint_len - Entry point
  * Description: calculate length of list
  * @h: pointer to struct
  * Return: number of node
