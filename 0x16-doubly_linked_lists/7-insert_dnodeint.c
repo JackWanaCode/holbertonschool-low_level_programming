@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 #include "lists.h"
 
@@ -22,16 +21,9 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	if (!new_node)
 		return (NULL);
 	new_node->n = n;
-	new_node->next = NULL;
-	new_node->prev = NULL;
-	if (*h == NULL)
+	while ((!(*h) && idx == 0) || p || c)
 	{
-		*h = new_node;
-		return (new_node);
-	}
-	while (c || p)
-	{
-		if (i == idx)
+		if (i == idx )
 		{
 			new_node->next = c;
 			new_node->prev = p;
