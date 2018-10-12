@@ -11,18 +11,23 @@ void hash_table_print(const hash_table_t *ht)
 {
 	unsigned long int idx;
 	int sign = 0;
+	hash_node_t *curr;
 
 	if (!ht)
 		return;
-	for (idx = 0; idx < 1024; idx++)
-		if (ht->array[idx] && sign == 0)
+	for (idx = 0; idx < ht->size; idx++)
+		if (ht->array[idx])
 		{
-			printf("{'%s': '%s'", ht->array[idx]->key, ht->array[idx]->value);
-			sign = 1;
-		}
-		else if (ht->array[idx])
-		{
-			printf(", '%s': '%s'", ht->array[idx]->key, ht->array[idx]->value);
+			for (curr = ht->array[idx]; curr; curr = curr->next)
+			{
+				if (sign == 0)
+				{
+					printf("{'%s': '%s'", ht->array[idx]->key, ht->array[idx]->value);
+					sign = 1;
+				}
+				else
+					printf(", '%s': '%s'", ht->array[idx]->key, ht->array[idx]->value);
+			}
 		}
 	printf("}\n");
 }
