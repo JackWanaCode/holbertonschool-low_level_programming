@@ -23,11 +23,11 @@ void hash_table_print(const hash_table_t *ht)
 			{
 				if (sign == 0)
 				{
-					printf("'%s': '%s'", ht->array[idx]->key, ht->array[idx]->value);
+					printf("'%s': '%s'", curr->key, curr->value);
 					sign = 1;
 				}
 				else
-					printf(", '%s': '%s'", ht->array[idx]->key, ht->array[idx]->value);
+					printf(", '%s': '%s'", curr->key, curr->value);
 			}
 		}
 	printf("}\n");
