@@ -98,7 +98,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 }
 
 /**
- * insert_sorted_list - Entry point
+ * insert_list - Entry point
  * Description: insert node in ordered
  * @node: node need inserted
  * @ht: hast table
@@ -112,30 +112,27 @@ void insert_list(shash_table_t *ht, shash_node_t *node, unsigned long int idx)
 	shash_node_t *curr = NULL;
 
 	curr = ht->array[idx];
+	if ((!curr && !prev) || (!prev && strcmp(curr->key, node->key) >= 0))
+	{
+		node->next = ht->array[idx];
+		ht->array[idx] = node;
+		return;
+	}
 	while (1)
 	{
-		if ((!curr && !prev) || (!prev && strcmp(curr->key, node->key) >= 0))
+		prev = curr;
+		curr = curr->next;
+		if ((curr && strcmp(curr->key, node->key) >= 0) || !curr)
 		{
-			node->next = ht->array[idx];
-			ht->array[idx] = node;
+			prev->next = node;
+			node->next = curr;
 			return;
-		}
-		else
-		{
-			prev = curr;
-			curr = curr->next;
-			if ((curr && strcmp(curr->key, node->key) >= 0) || !curr)
-			{
-				prev->next = node;
-				node->next = curr;
-				return;
-			}
 		}
 	}
 }
 
 /**
- * insert_sorted_list - Entry point
+ * insert_dlist - Entry point
  * Description: insert node in ordered
  * @node: node need inserted
  * @ht: hast table
