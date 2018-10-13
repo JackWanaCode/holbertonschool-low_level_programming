@@ -72,6 +72,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 
 	if (!ht || !key || !*key || !value)
 		return (0);
+	if (value == NULL)
+		return (0);
 	idx = key_index((unsigned char *)key, ht->size);
 	if (ht->array[idx])
 	{
@@ -254,5 +256,5 @@ void shash_table_delete(shash_table_t *ht)
 	}
 	free(ht->array);
 	free(ht);
-	ht = NULL;
+/*	ht = NULL;*/
 }
