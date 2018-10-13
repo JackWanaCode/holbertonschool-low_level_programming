@@ -12,6 +12,8 @@ shash_table_t *shash_table_create(unsigned long int size)
 	shash_table_t *ht = NULL;
 	unsigned long int i = 0;
 
+	if (size == 0)
+		return (NULL);
 	ht = malloc(sizeof(shash_table_t));
 	if (!ht)
 		return (NULL);
