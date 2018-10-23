@@ -112,27 +112,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 
 void insert_list(shash_table_t *ht, shash_node_t *node, unsigned long int idx)
 {
-	shash_node_t *prev = NULL;
-	shash_node_t *curr = NULL;
-
-	curr = ht->array[idx];
-	if ((!curr && !prev) || (!prev && strcmp(curr->key, node->key) >= 0))
-	{
-		node->next = ht->array[idx];
-		ht->array[idx] = node;
-		return;
-	}
-	while (1)
-	{
-		prev = curr;
-		curr = curr->next;
-		if ((curr && strcmp(curr->key, node->key) >= 0) || !curr)
-		{
-			prev->next = node;
-			node->next = curr;
-			return;
-		}
-	}
+	node->next = ht->array[idx];
+	ht->array[idx] = node;
 }
 
 /**
