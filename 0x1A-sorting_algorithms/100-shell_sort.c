@@ -49,3 +49,4 @@ void shell(int *array, size_t reach, size_t size)
 	print_array(array, size);
 	if (next > 0)
 		shell(array, next, size);
+}
