@@ -63,6 +63,8 @@ void shell_sort(int *array, size_t size)
 {
 	size_t interval = 0;
 
+	if (!array || size < 2)
+		return;
 	for (; interval < size; interval = interval * 3 + 1)
 		;
 	interval = (interval - 1) / 3;
