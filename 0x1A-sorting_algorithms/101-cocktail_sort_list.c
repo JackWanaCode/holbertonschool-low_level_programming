@@ -52,7 +52,7 @@ void cocktail_sort_list(listint_t **list)
 		count++;
 	m_head = *list;
 	m_tail = tail;
-	for (; jump < count; jump++, count--)
+	for (; jump <= count; jump++, count--)
 	{
 		if (check)
 		{
