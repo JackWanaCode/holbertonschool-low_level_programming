@@ -79,5 +79,7 @@ void quick_sort(int *array, size_t size)
 	size_t f_p = 0;
 	size_t s_p = size - 1;
 
+	if (!array)
+		return;
 	quick_sort_help(array, f_p, s_p, size);
 }
