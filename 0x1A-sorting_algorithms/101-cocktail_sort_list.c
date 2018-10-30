@@ -13,7 +13,8 @@
  * Return: nothing
  */
 
-void swap(listint_t **list, listint_t **tail, listint_t *prev_node, listint_t *curr_node)
+void swap(listint_t **list, listint_t **tail,
+	  listint_t *prev_node, listint_t *curr_node)
 {
 	prev_node->next = curr_node->next;
 	curr_node->prev = prev_node->prev;
@@ -44,26 +45,33 @@ void cocktail_sort_list(listint_t **list)
 	listint_t *tail = *list, *m_tail;
 	listint_t *curr_node = NULL;
 	listint_t *prev_node = NULL;
-	int check = 1, m_head_count = 0, m_tail_count = 0, count = 0, jump = 0, m_head_tail = 0;
+	int check = 1, m_head_count = 0, m_tail_count = 0,
+			count = 0, jump = 0, m_head_tail = 0;
 
 	for (; tail->next; tail = tail->next)
 		count++;
 	m_head = *list;
 	m_tail = tail;
-
-	for (;jump < count; jump++, count--)
+	for (; jump < count; jump++, count--)
 	{
 		if (check)
 		{
 			/* for forward and set m_tail back 1 step */
-			for (m_tail = tail, m_head_tail = 0; m_head_tail < m_head_count;
-					m_tail = m_tail->prev, m_head_tail++)
-					;
-			for (prev_node = m_head, curr_node = m_head->next; prev_node != m_tail;
-					prev_node = curr_node, curr_node = curr_node->next)
+			m_tail = tail;
+			m_head_tail = 0;
+			while (m_head_tail < m_head_count)
+			{
+				m_tail = m_tail->prev;
+				m_head_tail++;
+			}
+			prev_node = m_head;
+			curr_node = m_head->next;
+			while (prev_node != m_tail)
 			{
 				if (prev_node->n > curr_node->n)
 					swap(list, &tail, prev_node, curr_node);
+				prev_node = curr_node;
+				curr_node = curr_node->next;
 			}
 			check = 0;
 			m_head_count++;
@@ -71,16 +79,23 @@ void cocktail_sort_list(listint_t **list)
 		else
 		{
 			/* go backward and set m_head 1 step ahead */
-			for (m_head = *list, m_head_tail = 0; m_head_tail < m_tail_count;
-					m_head = m_head->next, m_head_tail++)
-					;
-			for (prev_node = m_tail->prev, curr_node = m_tail; curr_node != m_head;
-					curr_node = prev_node, prev_node = prev_node->prev)
+			m_head = *list;
+			m_head_tail = 0;
+			while (m_head_tail < m_tail_count)
+			{
+				m_head = m_head->next;
+				m_head_tail++;
+			}
+			prev_node = m_tail->prev;
+			curr_node = m_tail;
+			while (curr_node != m_head)
 			{
 				if (prev_node->n > curr_node->n)
 				{
 					swap(list, &tail, prev_node, curr_node);
 				}
+				curr_node = prev_node;
+				prev_node = prev_node->prev;
 			}
 			check = 1;
 			m_tail_count++;
