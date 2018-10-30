@@ -34,7 +34,7 @@ size_t partition(int *array, size_t f_p, size_t s_p, size_t f_size)
 			i = i + 1;
 		}
 	}
-	if (j != f_p)
+	if (j != f_p && i != s_p)
 	{
 		temp = array[i];
 		array[i] = array[s_p];
