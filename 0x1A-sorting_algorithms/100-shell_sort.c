@@ -33,6 +33,8 @@ void shell(int *array, size_t reach, size_t size)
 	size_t lo = 0, next = (reach - 1) / 3, inc = reach;
 	int temp;
 
+	if (!array || size < 2)
+		return;
 	while (reach < size)
 	{
 		if (array[lo] > array[reach])
