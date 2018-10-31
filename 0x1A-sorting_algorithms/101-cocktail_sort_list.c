@@ -41,14 +41,16 @@ void swap(listint_t **list, listint_t **tail,
  */
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *m_head = *list;
-	listint_t *tail = *list, *m_tail;
+	listint_t *m_head = NULL;
+	listint_t *tail = NULL, *m_tail;
 	listint_t *curr_node = NULL;
 	listint_t *prev_node = NULL;
 	int check = 1, m_head_count = 0, m_tail_count = 0,
 			count = 0, jump = 0, m_head_tail = 0;
 
-	for (; tail->next; tail = tail->next)
+	if (!list || !*list || !(*list)->next)
+		return;
+	for (tail = *list; tail->next; tail = tail->next)
 		count++;
 	m_head = *list;
 	m_tail = tail;
