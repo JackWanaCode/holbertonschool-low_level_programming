@@ -67,6 +67,8 @@ void counting_sort(int *array, size_t size)
 	int max = 0;
 	size_t i = 0;
 
+	if (!array || size < 2)
+		return;
 	/* allocate memory for return sorted array */
 	sorted_arr = malloc(sizeof(int) * size);
 	if (!sorted_arr)
