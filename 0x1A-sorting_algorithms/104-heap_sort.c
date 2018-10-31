@@ -33,12 +33,14 @@ void heap_sort(int *array, size_t size)
 	size_t re_size = size;
 	int count = 0;
 
+	if (!array || size < 2)
+		return;
 	for (j = re_size - 1; ;)
 	{
 		k = (j % 2) == 0 ? (j - 2) / 2 : (j - 1) / 2;
 		l = j;
 		count = 0;
-		while (array[k] < array[l] && count < 1)
+		while (array[k] < array[l] && count < 2)
 		{
 			swap(&array[k], &array[l]);
 			print_array(array, size);
