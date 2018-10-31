@@ -49,7 +49,6 @@ void merge_sort_help(int *array, size_t f_point, size_t l_point, int *ret_arr)
 			ret_arr[move] = array[i];
 			i++;
 		}
-
 	}
 	printf("[Done]: ");
 	for (move = f_point; move <= l_point; move++)
