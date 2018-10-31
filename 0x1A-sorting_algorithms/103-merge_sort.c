@@ -62,6 +62,15 @@ void merge_sort_help(int *array, size_t f_point, size_t l_point, int *ret_arr)
 	printf("\n");
 }
 
+/**
+ * merge_sort - sort data by merge method
+ *
+ * @array: Array to convert to a doubly linked list
+ * @size: size of array
+ *
+ * Return:
+ */
+
 void merge_sort(int *array, size_t size)
 {
 	size_t f_point = 0;
