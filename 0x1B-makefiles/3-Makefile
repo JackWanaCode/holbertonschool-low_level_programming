@@ -6,9 +6,9 @@ RM = rm
 all: $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 clean:
-	rm -f *~ $(NAME)
+	$(RM) -f *~ $(NAME)
 oclean:
-	rm -f $(OBJ)
+	$(RM) -f $(OBJ)
 fclean: clean oclean
 
 re: oclean all
