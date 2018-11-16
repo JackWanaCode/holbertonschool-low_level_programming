@@ -9,6 +9,5 @@ clean:
 	rm -f *~ $(NAME)
 oclean:
 	rm -f $(OBJ)
-fclean:
-	rm -f *~ $(OBJ) $(NAME)
+fclean: clean oclean
 re: oclean all
