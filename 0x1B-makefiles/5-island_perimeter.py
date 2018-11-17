@@ -1,5 +1,10 @@
 #!/usr/bin/python3
 
+"""Calculate perimeter of island
+Args:
+grid: matrix that contain island.
+Returns: perimeter of island"""
+
 
 def island_perimeter(grid):
     """return perimeter of island
