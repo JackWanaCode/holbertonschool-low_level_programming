@@ -10,8 +10,8 @@ def island_perimeter(grid):
     """return perimeter of island
     """
     count = 0
-    for row in range(0, len(grid)):
-        for col in range(0, len(grid[row])):
+    for row in range(len(grid) - 1):
+        for col in range(len(grid[row]) - 1):
             if grid[row][col] == 1:
                 if grid[row - 1][col] == 0:
                     count += 1
