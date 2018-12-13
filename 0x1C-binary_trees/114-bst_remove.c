@@ -1,5 +1,11 @@
 #include "binary_trees.h"
 
+/**
+* delete_bst_node - Entry point
+* Description - delete a node in SBT
+* @node: node need delete
+* Return: nothing
+*/
 
 void delete_bst_node(bst_t *node)
 {
@@ -11,27 +17,30 @@ void delete_bst_node(bst_t *node)
 			node->parent->right = NULL;
 		free(node);
 	}
-	else if (!node->right)
-	{
-		node->n = node->left->n;
-		delete_bst_node(node->left);
-	}
-	else if (!node->left)
-	{
-		node->n = node->right->n;
-		delete_bst_node(node->right);
-	}
-	else
+	else if (node->right)
 	{
 		if (node->right->left)
 		{
 			node->n = node->right->left->n;
 			delete_bst_node(node->right->left);
 		}
-		else if (node->right->right)
+		else
 		{
-			node->n = node->right->right->n;
-			delete_bst_node(node->right->right);
+			node->n = node->right->n;
+			delete_bst_node(node->right);
+		}
+	}
+	else if (!node->right)
+	{
+		if (node->left->right)
+		{
+			node->n = node->left->right->n;
+			delete_bst_node(node->left->right);
+		}
+		else
+		{
+			node->n = node->left->n;
+			delete_bst_node(node->left);
 		}
 	}
 }
@@ -48,6 +57,7 @@ void delete_bst_node(bst_t *node)
 bst_t *bst_remove(bst_t *tree, int value)
 {
 	bst_t *root;
+
 	if (tree->n == value)
 	{
 		for (root = tree; root->parent; root = root->parent)
