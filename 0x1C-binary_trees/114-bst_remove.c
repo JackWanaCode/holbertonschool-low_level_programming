@@ -27,23 +27,19 @@ bst_t *delete_bst_node(bst_t *node)
 	}
 	else if (node->right)
 	{
-		if (node->right->left)
-		{
-			node->n = node->right->left->n;
-			return (delete_bst_node(node->right->left));
-		}
-		node->n = node->right->n;
-		return (delete_bst_node(node->right));
+		temp = node->right;
+		while (temp->left)
+			temp = temp->left;
+		node->n = temp->n;
+		return (delete_bst_node(temp));
 	}
 	else if (!node->right)
 	{
-		if (node->left->right)
-		{
-			node->n = node->left->right->n;
-			return (delete_bst_node(node->left->right));
-		}
-		node->n = node->left->n;
-		return (delete_bst_node(node->left));
+		temp = node->left;
+		while (temp->right)
+			temp = temp->right;
+		node->n = temp->n;
+		return (delete_bst_node(temp));
 	}
 	return (root);
 }
