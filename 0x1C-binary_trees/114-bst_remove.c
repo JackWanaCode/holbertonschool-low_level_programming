@@ -59,11 +59,11 @@ void delete_bst_node(bst_t *node)
 
 bst_t *bst_remove(bst_t *tree, int value)
 {
-	bst_t *root;
+	bst_t *root = tree;
 
 	if (tree->n == value)
 	{
-		for (root = tree; root->parent; root = root->parent)
+		for (; root->parent; root = root->parent)
 			;
 		delete_bst_node(tree);
 	}
