@@ -59,6 +59,8 @@ bst_t *delete_bst_node(bst_t *node)
 
 bst_t *bst_remove(bst_t *tree, int value)
 {
+	if (!tree)
+		return (NULL);
 	if (tree->n == value)
 		return (delete_bst_node(tree));
 	else if (value < tree->n)
