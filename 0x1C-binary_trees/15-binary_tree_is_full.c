@@ -1,4 +1,5 @@
 #include "binary_trees.h"
+#define MIN(x, y) ((x) < (y) ? (x) : (y))
 
 /**
 * binary_tree_is_full - Entry point
@@ -10,16 +11,14 @@
 
 int binary_tree_is_full(const binary_tree_t *tree)
 {
-	int check = 1;
-
 	if (!tree)
 		return (0);
-	if (tree->left && tree->right && check == 1)
+	if (tree->left && tree->right)
 	{
-		check = binary_tree_is_full(tree->left);
-		check = binary_tree_is_full(tree->right);
+		return (MIN(binary_tree_is_full(tree->left),
+			    binary_tree_is_full(tree->right)));
 	}
-	else if (tree->left || tree->right)
-		return (0);
-	return (check);
+	if (!tree->left && !tree->right)
+		return (1);
+	return (0);
 }
