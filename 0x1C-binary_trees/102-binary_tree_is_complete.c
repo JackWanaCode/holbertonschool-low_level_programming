@@ -1,129 +1,78 @@
 #include "binary_trees.h"
-#define MAX(x, y) ((x) > (y) ? (x) : (y))
-
-/**
-* height - Entry point
-* Description - measures the height of a binary tree
-* @tree: pointer point to root
-* Return: height
-*/
-
-size_t height(const binary_tree_t *tree)
-{
-	if (!tree)
-		return (0);
-	return (MAX(height(tree->left), height(tree->right)) + 1);
-}
+#define CMP(x, y) ((x) == (y) ? 1 : 0)
+#define MIN(x, y) ((x) < (y) ? (x) : (y))
 
 /**
 * depth - Entry point
 * Description - measures the depth of a binary tree
-* @tree: pointer point to root
-* Return: nothing
+* @root: pointer point to root
+* @node: pointer to node need to be get depth
+* Return: depth
 */
 
 
-size_t depth(const binary_tree_t *tree)
+size_t depth(binary_tree_t *root, binary_tree_t *node)
 {
-	const binary_tree_t *jump;
-	size_t count = 1;
+	size_t count = 0;
 
-	for (jump = tree; jump && jump->parent; jump = jump->parent)
+	for (; node != root; node = node->parent)
 		count++;
 	return (count);
 }
 
 /**
-* free_list - Entry point
-* Description - free the linked list
-* @head: pointer point to root
-* Return: nothing
+* complete_check - Entry point
+* Description - check tree is complete?
+* @temp_root: pointer point to root
+* @node: current node pointer
+* @leaf_depth: depth of leaf;
+* @count_left: left counting
+* Return: 1 if yes, else 0
 */
 
-void free_list(blist_t *head)
+int complete_check(binary_tree_t *temp_root, binary_tree_t *node,
+										size_t leaf_depth, int *count_left)
 {
-	blist_t *jump;
-
-	for (jump = head; jump;)
+	if (!node->left && !node->right)
+		return (CMP(depth(temp_root, node), leaf_depth));
+	else if (!node->left && node->right)
+		return (0);
+	else if (node->left && !node->right)
 	{
-		head = head->next;
-		free(jump);
-		jump = head;
+		if (*count_left == 0)
+		{
+			*count_left = 1;
+			return (1);
+		}
+		return (0);
 	}
+	return (MIN(complete_check(temp_root, node->left, leaf_depth, count_left),
+							complete_check(temp_root, node->right, leaf_depth, count_left)));
 }
 
 /**
 * binary_tree_is_complete - Entry point
-* Description - print the node as level order
+* Description - check the binary tree is complete or not
 * @tree: pointer point to root
 * Return: height
 */
 
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
-	blist_t *jump;
-	blist_t *last;
-	blist_t *head;
-	size_t h;
-	int check = 1;
+	binary_tree_t *temp;
+	size_t leaf_depth = 0;
+	int count_left = 0;
 
 	if (!tree)
 		return (0);
-	h = height(tree);
-	last = malloc(sizeof(blist_t));
-	if (!last)
-		return (0);
-	last->node = tree;
-	last->next = NULL;
-	jump = last;
-	head = last;
-	while (depth(jump->node) < h)
+	temp = (binary_tree_t *)tree;
+	while (temp->left)
 	{
-		if (jump->node->left)
-		{
-			if (check == 0)
-			{
-				free(head);
-				return (0);
-			}
-			last->next = malloc(sizeof(blist_t));
-			if (!last->next)
-			{
-				free_list(head);
-				return (0);
-			}
-			last = last->next;
-			last->node = jump->node->left;
-			last->next = NULL;
-		}
-		else if (check == 1)
-		/* if not the second last one */
-		{
-			free_list(head);
-			return (0);
-		}
-		if (jump->node->right)
-		{
-			if (check == 0)
-			{
-				free(head);
-				return (0);
-			}
-			last->next = malloc(sizeof(blist_t));
-			if (!last->next)
-			{
-				free_list(head);
-				return (0);
-			}
-			last = last->next;
-			last->node = jump->node->right;
-			last->next = NULL;
-		}
-		else
-		/* start to watch the jumping */
-			check = 0;
-		jump = jump->next;
+		leaf_depth++;
+		temp = temp->left;
 	}
-	free_list(head);
-	return (1);
+	if (leaf_depth == 0)
+		return (1);
+	return (complete_check((binary_tree_t *)tree, (binary_tree_t *)tree,
+													leaf_depth, &count_left));
 }
