@@ -32,22 +32,15 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	size_t d1;
 	size_t d2;
 
+	if (!first || !second)
+		return (NULL);
 	d1 = binary_tree_depth(first);
 	d2 = binary_tree_depth(second);
-	if (first->parent == second)
-		return (first->parent);
-	else if (second->parent == first)
-		return (second->parent);
 	if (d1 > d2)
-		first = first->parent;
+		return (binary_trees_ancestor(first->parent, second));
 	else if (d1 < d2)
-		second = second->parent;
-	while (first->parent)
-	{
-		if (first->parent == second->parent)
-			return (first->parent);
-		first = first->parent;
-		second = second->parent;
-	}
-	return (NULL);
+		return (binary_trees_ancestor(first, second->parent));
+	if (first == second)
+		return ((binary_tree_t *)first);
+	return (binary_trees_ancestor(first->parent, second->parent));
 }
