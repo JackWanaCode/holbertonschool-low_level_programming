@@ -33,13 +33,15 @@ size_t depth(binary_tree_t *root, binary_tree_t *node)
 int complete_check(binary_tree_t *temp_root, binary_tree_t *node,
 										size_t leaf_depth, int *count_left)
 {
-	if (!node->left && !node->right)
+	if (depth(temp_root, node) > leaf_depth)
+		return (0);
+	else if (!node->left && !node->right)
 		return (CMP(depth(temp_root, node), leaf_depth));
 	else if (!node->left && node->right)
 		return (0);
 	else if (node->left && !node->right)
 	{
-		if (*count_left == 0)
+		if (*count_left == 0 && (depth(temp_root, node) == leaf_depth - 1))
 		{
 			*count_left = 1;
 			return (1);
