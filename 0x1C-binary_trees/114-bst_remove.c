@@ -9,12 +9,15 @@
 
 void delete_bst_node(bst_t *node)
 {
+	bst_t *temp;
+
 	if (!node->left && !node->right)
 	{
-		if (node->parent && node->parent->left->n == node->n)
-			node->parent->left = NULL;
-		else if (node->parent)
-			node->parent->right = NULL;
+		temp = node->parent;
+		if (temp && temp->left && temp->left->n == node->n)
+			temp->left = NULL;
+		else if (temp)
+			temp->right = NULL;
 		free(node);
 	}
 	else if (node->right)
