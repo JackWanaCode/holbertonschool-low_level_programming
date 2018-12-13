@@ -61,6 +61,13 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 	return (check_bst(tree, &key, &first, &check));
 }
 
+/**
+* binary_tree_is_avl - Entry point
+* Description - check the tree is AVL tree?
+* @tree: pointer point to root
+* Return: 1 if yes, else 0;
+*/
+
 int binary_tree_is_avl(const binary_tree_t *tree)
 {
 	if (!tree)
