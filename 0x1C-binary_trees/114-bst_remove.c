@@ -7,10 +7,13 @@
 * Return: nothing
 */
 
-void delete_bst_node(bst_t *node)
+bst_t *delete_bst_node(bst_t *node)
 {
 	bst_t *temp;
+	bst_t *root;
 
+	for (root = node; root->parent; root = root->parent)
+		;
 	if (!node->left && !node->right)
 	{
 		temp = node->parent;
@@ -19,18 +22,20 @@ void delete_bst_node(bst_t *node)
 		else if (temp)
 			temp->right = NULL;
 		free(node);
+		if (!temp)
+			return (NULL);
 	}
 	else if (node->right)
 	{
 		if (node->right->left)
 		{
 			node->n = node->right->left->n;
-			delete_bst_node(node->right->left);
+			return (delete_bst_node(node->right->left));
 		}
 		else
 		{
 			node->n = node->right->n;
-			delete_bst_node(node->right);
+			return (delete_bst_node(node->right));
 		}
 	}
 	else if (!node->right)
@@ -38,14 +43,15 @@ void delete_bst_node(bst_t *node)
 		if (node->left->right)
 		{
 			node->n = node->left->right->n;
-			delete_bst_node(node->left->right);
+			return (delete_bst_node(node->left->right));
 		}
 		else
 		{
 			node->n = node->left->n;
-			delete_bst_node(node->left);
+			return (delete_bst_node(node->left));
 		}
 	}
+	return (root);
 }
 
 
@@ -59,17 +65,9 @@ void delete_bst_node(bst_t *node)
 
 bst_t *bst_remove(bst_t *tree, int value)
 {
-	bst_t *root = tree;
-
 	if (tree->n == value)
-	{
-		for (; root->parent; root = root->parent)
-			;
-		delete_bst_node(tree);
-	}
+		return (delete_bst_node(tree));
 	else if (value < tree->n)
 		return (bst_remove(tree->left, value));
-	else
-		return (bst_remove(tree->right, value));
-	return (root);
+	return (bst_remove(tree->right, value));
 }
