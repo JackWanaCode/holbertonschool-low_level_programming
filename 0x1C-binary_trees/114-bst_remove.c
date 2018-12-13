@@ -1,5 +1,38 @@
 #include "binary_trees.h"
 
+
+/**
+* delete_help - Entry point
+* Description - delete a node in SBT for basic cases
+* @node: node need delete
+* @parent: parent
+* @i: signal. 2 for root, 1 for left, 0 for right
+* Return: nothing
+*/
+
+void delete_help(bst_t *parent, bst_t *node, int i)
+{
+	if (parent && parent->left && parent->left->n == node->n)
+	{
+		if (i == 1)
+			parent->left = node->left;
+		else if (i == 0)
+			parent->left = node->right;
+		else if (i == 2)
+			parent->left = NULL;
+	}
+	else if (parent)
+	{
+		if (i == 1)
+			parent->right = node->left;
+		else if (i == 0)
+			parent->right = node->right;
+		else if (i == 2)
+			parent->right = node->left;
+	}
+	free(node);
+}
+
 /**
 * delete_bst_node - Entry point
 * Description - delete a node in SBT
@@ -9,54 +42,39 @@
 
 bst_t *delete_bst_node(bst_t *node)
 {
-	bst_t *temp;
-	bst_t *root;
+	bst_t *temp, *root;
 
 	for (root = node; root->parent; root = root->parent)
 		;
 	if (!node->left && !node->right)
 	{
 		temp = node->parent;
-		if (temp && temp->left && temp->left->n == node->n)
-			temp->left = NULL;
-		else if (temp)
-			temp->right = NULL;
-		free(node);
+		delete_help(temp, node, 2);
 		if (!temp)
 			root = NULL;
 	}
 	else if (node->right && node->left)
 	{
-		temp = node->right;
-		while (temp->left)
-			temp = temp->left;
+		for (temp = node->right; temp->left; temp = temp->left)
+			;
 		node->n = temp->n;
 		return (delete_bst_node(temp));
 	}
-	else if (!node->right)
-	{
-
-		temp = node->parent;
-		node->left->parent = temp;
-		if (temp && temp->left && temp->left->n == node->n)
-			temp->left = node->left;
-		else if (temp)
-			temp->right = node->left;
-		if (!temp)
-			root = node->left;
-		free(node);
-	}
-	else if (node->right)
+	else
 	{
 		temp = node->parent;
-		node->right->parent = temp;
-		if (temp && temp->left && temp->left->n == node->n)
-			temp->left = node->right;
-		else if (temp)
-			temp->right = node->right;
 		if (!temp)
 			root = node->right;
-		free(node);
+		if (!node->right)
+		{
+			node->left->parent = temp;
+			delete_help(temp, node, 1);
+		}
+		else if (node->right)
+		{
+			node->right->parent = temp;
+			delete_help(temp, node, 0);
+		}
 	}
 	return (root);
 }
