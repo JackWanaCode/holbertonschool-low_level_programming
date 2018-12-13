@@ -3,8 +3,8 @@
 /**
 * array_to_bst - Entry point
 * Description - insert a node (take from elements in a given array) to bst tree
-* @tree: pointer point to root
-* @value: value of key
+* @array: array of keys
+* @size: size of array
 * Return: return a pointer to the root, or NULL on failure
 */
 
