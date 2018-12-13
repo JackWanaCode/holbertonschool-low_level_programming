@@ -33,7 +33,7 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 	blist_t *last;
 	blist_t *head;
 
-	if (!tree)
+	if (!tree || !func)
 		return;
 	last = malloc(sizeof(blist_t));
 	if (!last)
