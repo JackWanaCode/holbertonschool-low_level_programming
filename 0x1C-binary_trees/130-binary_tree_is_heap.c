@@ -37,8 +37,8 @@ int complete_check(binary_tree_t *temp_root, binary_tree_t *node,
 
 	if (!node)
 		return (1);
-	if (((node->left) && node->n < node->left->n) ||
-	    ((node->right) && node->n < node->right->n))
+	if (((node->left) && node->n <= node->left->n) ||
+	    ((node->right) && node->n <= node->right->n))
 		return (0);
 	if (!node->left && node->right)
 		return (0);
