@@ -26,12 +26,11 @@ size_t depth(binary_tree_t *temp_root, binary_tree_t *node)
 * @node: current node pointer
 * @leaf_depth: depth of leaf;
 * @count_left: left counting
-* @count_double: left counting
 * Return: 1 if yes, else 0
 */
 
 int complete_check(binary_tree_t *temp_root, binary_tree_t *node,
-										size_t leaf_depth, int *count_left, int *count_double)
+		   size_t leaf_depth, int *count_left)
 {
 	int x = 0, y = 0;
 
@@ -49,30 +48,20 @@ int complete_check(binary_tree_t *temp_root, binary_tree_t *node,
 	{
 		if (node->left && !node->right)
 		{
-			if (*count_left < 1)
-			{
-				(*count_left)++;
+			if ((*count_left)++ < 1)
 				return (1);
-			}
 			return (0);
 		}
-		if (!node->left && !node->right)
-		{
-			(*count_double)++;
+		if (!node->left && !node->right && (*count_left)++ == 0)
 			return (1);
-		}
-		if (node->left && node->right && *count_double > 0)
+		if (node->left && node->right && *count_left > 0)
 			return (0);
 	}
-	if (depth(temp_root, node) < leaf_depth - 1)
-	{
-		if (!node->left && !node->right)
-			return (0);
-	}
-	x = complete_check(temp_root, node->left, leaf_depth,
-											count_left, count_double);
-	y = complete_check(temp_root, node->right, leaf_depth,
-											count_left, count_double);
+	if (depth(temp_root, node) < leaf_depth - 1 &&
+	    !node->left && !node->right)
+		return (0);
+	x = complete_check(temp_root, node->left, leaf_depth, count_left);
+	y = complete_check(temp_root, node->right, leaf_depth, count_left);
 	return (MIN(x, y));
 }
 
@@ -88,7 +77,6 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 	binary_tree_t *temp;
 	size_t leaf_depth = 0;
 	int count_left = 0;
-	int count_double = 0;
 
 	if (!tree)
 		return (0);
@@ -101,5 +89,5 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 	if (leaf_depth == 0)
 		return (1);
 	return (complete_check((binary_tree_t *)tree, (binary_tree_t *)tree,
-													leaf_depth, &count_left, &count_double));
+			       leaf_depth, &count_left));
 }
