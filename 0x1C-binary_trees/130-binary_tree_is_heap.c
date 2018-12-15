@@ -42,28 +42,19 @@ int complete_check(binary_tree_t *temp_root, binary_tree_t *node,
 		return (0);
 	if (!node->left && node->right)
 		return (0);
-	if (depth(temp_root, node) == leaf_depth)
-	{
-		if (node->left || node->right)
-			return (0);
-		return (1);
-	}
+	if (depth(temp_root, node) > leaf_depth)
+		return (0);
 	if (depth(temp_root, node) == leaf_depth - 1)
 	{
 		if (node->left && !node->right)
 		{
 			if (*count_left < 1)
-			{
 				(*count_left)++;
-				return (1);
-			}
-			return (0);
+			else
+				return (0);
 		}
 		if (!node->left && !node->right)
-		{
 			(*count_double)++;
-			return (1);
-		}
 		if (node->left && node->right && *count_double > 0)
 			return (0);
 	}
