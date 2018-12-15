@@ -1,6 +1,44 @@
 #include "binary_trees.h"
 
 /**
+* self_balance_help_remove - Entry point
+* Description - help to make self balance
+* @father: parent level of current node
+* @current: current node
+* @child: current's child
+* Return: nothing
+*/
+
+void self_balance_help_remove(avl_t *father, avl_t *current, avl_t *child)
+{
+	if (father && current && child)
+	{
+		if ((father->left && father->left->n == current->n) &&
+				(current->left && current->left->n == child->n))
+		{
+			binary_tree_rotate_right(father);
+		}
+		if ((father->left && father->left->n == current->n) &&
+				(current->right && current->right->n == child->n))
+		{
+			binary_tree_rotate_left(current);
+			binary_tree_rotate_right(father);
+		}
+		if ((father->right && father->right->n == current->n) &&
+				(current->right && current->right->n == child->n))
+		{
+			binary_tree_rotate_left(father);
+		}
+		if ((father->right && father->right->n == current->n) &&
+				(current->left && current->left->n == child->n))
+		{
+			binary_tree_rotate_right(current);
+			binary_tree_rotate_left(father);
+		}
+	}
+}
+
+/**
 * make_it_balance - Entry point
 * Description - make the tree balance
 * @node: node need to check
@@ -39,7 +77,7 @@ void make_it_balance(avl_t *node)
 			else if (father->right->left)
 				child = father->right->left;
 		}
-		self_balance_help(father, current, child);
+		self_balance_help_remove(father, current, child);
 	}
 }
 
@@ -121,7 +159,7 @@ avl_t *delete_avl_node(avl_t *node)
 		{
 			node->right->parent = temp;
 			root = node->right;
-			set_self_balance(delete_help(temp, node, 0));
+			make_it_balance(delete_help(temp, node, 0));
 		}
 	}
 	return (root);
