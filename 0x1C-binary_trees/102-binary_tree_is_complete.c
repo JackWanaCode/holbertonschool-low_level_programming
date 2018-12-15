@@ -35,34 +35,35 @@ int complete_check(binary_tree_t *temp_root, binary_tree_t *node,
 {
 	if (depth(temp_root, node) > leaf_depth)
 		return (0);
-	else if (!node->left && !node->right)
+	if (depth(temp_root, node) < leaf_depth - 1)
 	{
-		if ((depth(temp_root, node) == leaf_depth - 1))
-		{
-			*count_left = 1;
-			return (1);
-		}
-		if ((depth(temp_root, node) < leaf_depth - 1))
+		if (!node->left && !node->right)
 			return (0);
-		return (1);
 	}
-	else if (!node->left && node->right)
+	if (!node->left && node->right)
 		return (0);
-	else if (node->left && !node->right)
+	if (depth(temp_root, node) == leaf_depth - 1)
 	{
-		if (*count_left == 0 && (depth(temp_root, node) == leaf_depth - 1))
+		if (node->left && !node->right)
+		{
+			if (*count_left == 0)
+			{
+				*count_left = 1;
+				return (1);
+			}
+			return (0);
+		}
+		if (!node->left && !node->right)
 		{
 			*count_left = 1;
 			return (1);
 		}
-		else if (depth(temp_root, node) <= leaf_depth - 1)
-			return (0);
-		return (1);
-	}
-	else
-	{
-		if ((depth(temp_root, node) == leaf_depth - 1) && *count_left != 0)
-			return (0);
+		if (node->left && node->right)
+		{
+			if (*count_left == 1)
+				return (0);
+			return (1);
+		}
 	}
 	return (MIN(complete_check(temp_root, node->left, leaf_depth, count_left),
 							complete_check(temp_root, node->right, leaf_depth, count_left)));
