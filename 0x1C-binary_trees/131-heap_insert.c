@@ -40,15 +40,17 @@ int check_perfect(const binary_tree_t *tree, size_t leaf_depth)
 
 
 /**
-* insert_heap - Entry point
+* heap_insert - Entry point
 * Description - insert a node follow max heap
 * @root: pointer to the root
 * @value: value of key will be added
-* @leaf_depth: the left leaf deepest.
-* Return: added node
+* @ret_node: node is added
+* @leaf_depth: depth of leaf
+* Return: ret_node
 */
 
-heap_t *insert_heap(heap_t *root, int value, size_t leaf_depth)
+heap_t *insert_heap(heap_t *root, heap_t *ret_node,
+		    int value, size_t leaf_depth)
 {
 	int temp;
 
@@ -66,25 +68,28 @@ heap_t *insert_heap(heap_t *root, int value, size_t leaf_depth)
 		}
 		else if (check_perfect(root->left, leaf_depth) &&
 			 !check_perfect(root->right, leaf_depth))
-			return (insert_heap(root->right, value, leaf_depth));
-		return (insert_heap(root->left, value, leaf_depth));
+			return (insert_heap(root->right, ret_node,
+					    value, leaf_depth));
+		return (insert_heap(root->left, ret_node, value, leaf_depth));
 	}
 	temp = root->n;
 	root->n = value;
+	if (!ret_node)
+		ret_node = root;
 	if (!root->left)
 	{
 		root->left = binary_tree_node(root, temp);
-		return (root);
+		return (ret_node);
 	}
 	else if (!root->right)
 	{
 		root->right = binary_tree_node(root, temp);
-		return (root);
+		return (ret_node);
 	}
 	else if (check_perfect(root->left, leaf_depth) &&
 		 !check_perfect(root->right, leaf_depth))
-		return (insert_heap(root->right, temp, leaf_depth));
-	return (insert_heap(root->left, temp, leaf_depth));
+		return (insert_heap(root->right, ret_node, temp, leaf_depth));
+	return (insert_heap(root->left, ret_node, temp, leaf_depth));
 }
 
 /**
@@ -92,7 +97,7 @@ heap_t *insert_heap(heap_t *root, int value, size_t leaf_depth)
 * Description - insert a node follow max heap
 * @root: pointer to the root
 * @value: value of key will be added
-* Return: added node
+* Return: root
 */
 
 heap_t *heap_insert(heap_t **root, int value)
@@ -111,5 +116,5 @@ heap_t *heap_insert(heap_t **root, int value)
 		leaf_depth++;
 		temp = temp->left;
 	}
-	return (insert_heap(*root, value, leaf_depth));
+	return (insert_heap(*root, NULL, value, leaf_depth));
 }
