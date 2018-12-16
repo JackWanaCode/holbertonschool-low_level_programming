@@ -74,12 +74,12 @@ heap_t *insert_heap(heap_t *root, int value, size_t leaf_depth)
 	if (!root->left)
 	{
 		root->left = binary_tree_node(root, temp);
-		return ((heap_t *)root->left);
+		return (root);
 	}
 	else if (!root->right)
 	{
 		root->right = binary_tree_node(root, temp);
-		return ((heap_t *)root->right);
+		return (root);
 	}
 	else if (check_perfect(root->left, leaf_depth) &&
 		 !check_perfect(root->right, leaf_depth))
