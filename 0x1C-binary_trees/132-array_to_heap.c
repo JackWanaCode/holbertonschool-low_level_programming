@@ -15,6 +15,7 @@ heap_t *array_to_heap(int *array, size_t size)
 
 	if (size == 0)
 		return (NULL);
+	root = NULL;
 	while (size-- > 0)
 		heap_insert(&root, *array++);
 	return (root);
