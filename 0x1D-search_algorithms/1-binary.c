@@ -53,5 +53,7 @@ int binary_search(int *array, size_t size, int value)
 	size_t first = 0;
 	size_t last = size - 1;
 
+	if (!array)
+		return (-1);
 	return (bs_help(array, size, value, first, last));
 }
