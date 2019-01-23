@@ -29,9 +29,9 @@ int bs_help(int *array, size_t size, int value,
 			return (first);
 		return (-1);
 	}
-	if (value == array[(last - first) / 2])
-		return ((last - first) / 2);
-	if (value < array[(last - first) / 2])
+	if (value == array[(last + first) / 2])
+		return ((last + first) / 2);
+	if (value < array[(last + first) / 2])
 		return (bs_help(array, size, value, first,
 				(last + first) / 2 - 1));
 	return (bs_help(array, size, value, ((last + first) / 2) + 1,
