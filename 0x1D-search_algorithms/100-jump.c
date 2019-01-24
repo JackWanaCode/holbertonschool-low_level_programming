@@ -50,7 +50,8 @@ int jump_search(int *array, size_t size, int value)
 	{
 		if (array[i] >= value || i >= size)
 		{
-			i -= step;
+			if (i != 0)
+				i -= step;
 			printf("Value found between indexes [%lu] and [%lu]\n",
 			       i, i + step);
 			return (linear_s(array, size, step + 1, value, i));
