@@ -9,20 +9,20 @@
  * using the Linear search algo
  * @array: array of intergers
  * @size: size of array
+ * @step: step of jump
  * @value: value for searching
  * @position: position of index
  * Return: postion of value or -1 if not found
  */
 
-int linear_s(int *array, size_t size, int value, int position)
+int linear_s(int *array, size_t size, size_t step, int value, int position)
 {
-	size_t i;
+	size_t i, j;
 
-	if (!array)
-		return (-1);
-	for (i = 0; i < size; i++)
+	for (i = position, j = 0; i < size && j < step; i++, j++)
 	{
-		printf("Value checked array[%lu] = [%d]\n", i + position, array[i]);
+		printf("Value checked array[%lu] = [%d]\n",
+		       i, array[i]);
 		if (array[i] == value)
 			return (i);
 	}
@@ -43,24 +43,17 @@ int jump_search(int *array, size_t size, int value)
 {
 	size_t step = sqrt(size);
 	size_t i;
-	int check = 1;
 
-	if (!array)
+	if (!array || size == 0)
 		return (-1);
-	for (i = 0; i < (size + step - 1) && check; i += step)
+	for (i = 0; i < size + step; i += step)
 	{
-		if (i >= size)
-		{
-			step = step - (i - size + 1);
-			i = size - 1;
-			check = 0;
-		}
-		if (array[i] >= value)
+		if (array[i] >= value || i >= size)
 		{
 			i -= step;
 			printf("Value found between indexes [%lu] and [%lu]\n",
 			       i, i + step);
-			return (linear_s(array + i, step + 1, value, i));
+			return (linear_s(array, size, step + 1, value, i));
 		}
 		printf("Value checked array[%lu] = [%d]\n", i, array[i]);
 	}
