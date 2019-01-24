@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "search_algos.h"
 
-#define MIN(x ,y) ((x) < (y) ? (x) : (y))
+#define MIN(x, y) ((x) < (y) ? (x) : (y))
 
 /**
  * bs_help - Entry point
@@ -41,7 +41,7 @@ int bs_help(int *array, size_t size, int value,
 }
 
 /**
- * binary_search - Entry point
+ * exponential_search - Entry point
  * Description: searches for a value in a sorted array of integers
  * using the Binary search algo
  * @array: array of intergers
@@ -53,11 +53,11 @@ int bs_help(int *array, size_t size, int value,
 int exponential_search(int *array, size_t size, int value)
 {
 	size_t first = 0;
-        size_t last = size - 1;
+	size_t last = size - 1;
 	size_t exp;
 
-        if (!array)
-                return (-1);
+	if (!array)
+		return (-1);
 	for (exp = 1; exp < size && array[exp] < value; exp *= 2)
 	{
 		printf("Value checked array[%lu] = [%d]\n", exp, array[exp]);
